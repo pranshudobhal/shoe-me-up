@@ -6,9 +6,11 @@ export function Cart() {
 
   return (
     <div>
-      {cart.map((cartItem) => {
-        return <CartCard cartItem={cartItem} />;
-      })}
+      {cart.length === 0
+        ? 'cart is empty'
+        : cart.map((cartItem) => {
+            return <CartCard cartItem={cartItem} />;
+          })}
     </div>
   );
 }

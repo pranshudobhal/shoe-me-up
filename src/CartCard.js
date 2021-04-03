@@ -26,6 +26,9 @@ export default function CartCard({ cartItem }) {
       <button disabled={quantity >= 9} onClick={() => dataDispatch({ type: 'INCREMENT_IN_CART', payload: cartItem })}>
         +
       </button>
+      <br />
+      <button onClick={() => dataDispatch({ type: 'REMOVE_FROM_CART', payload: cartItem })}>Remove</button>
+      <button onClick={() => dataDispatch({ type: 'ADD_TO_FAVOURITE', payload: cartItem })}>Add to Favourites</button>
     </div>
   );
 }

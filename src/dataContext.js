@@ -54,7 +54,7 @@ const reducer = (state, action) => {
         showFastDelivery: !state.showFastDelivery,
       };
     case 'ADD_TO_CART':
-      return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }] };
+      return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }], wishlist: state.wishlist.filter((wishlistItem) => wishlistItem.id !== action.payload.id) };
 
     case 'INCREMENT_IN_CART':
       return {
@@ -80,6 +80,15 @@ const reducer = (state, action) => {
           })
           .filter((cartItem) => cartItem !== undefined),
       };
+
+    case 'REMOVE_FROM_CART':
+      return {
+        ...state,
+        cart: state.cart.filter((cartItem) => cartItem.id !== action.payload.id),
+      };
+
+    case 'ADD_TO_FAVOURITE':
+      return { ...state, wishlist: [...state.wishlist, { ...action.payload }], cart: state.cart.filter((cartItem) => cartItem.id !== action.payload.id) };
 
     default:
       throw new Error('error in reducer');

@@ -1,11 +1,10 @@
 import './App.css';
 import { Products } from './Products';
+import { Wishlist } from './Wishlist';
 import { Cart } from './Cart';
-import { useState } from 'react';
 
-export function Wishlist() {
-  return <h1>I am WISHLIST!!!</h1>;
-}
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function App() {
   const [route, setRoute] = useState('products');

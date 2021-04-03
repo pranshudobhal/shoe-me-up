@@ -27,7 +27,8 @@ export default function ProductCard({ product }) {
       >
         {' '}
         Add to Cart{' '}
-      </button>{' '}
+      </button>
+      <button onClick={() => dataDispatch({ type: 'ADD_TO_FAVOURITE', payload: product })}>Add to Favourites</button>
     </div>
   );
 }
