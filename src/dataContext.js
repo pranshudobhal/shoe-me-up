@@ -8,6 +8,7 @@ export function DataProvider({ children }) {
     sortBy: null,
     showInventoryAll: true,
     showFastDelivery: false,
+    priceSlider: 1000,
     cart: [],
     wishlist: [],
     products: data,
@@ -19,6 +20,7 @@ export function DataProvider({ children }) {
         sortBy: state.sortBy,
         showInventoryAll: state.showInventoryAll,
         showFastDelivery: state.showFastDelivery,
+        priceSlider: state.priceSlider,
         cart: state.cart,
         wishlist: state.wishlist,
         products: state.products,
@@ -41,6 +43,9 @@ const reducer = (state, action) => {
         ...state,
         sortBy: action.payload,
       };
+
+    case 'PRICE_RANGE':
+      return { ...state, priceSlider: action.payload };
 
     case 'TOGGLE_INVENTORY':
       return {
@@ -87,8 +92,12 @@ const reducer = (state, action) => {
         cart: state.cart.filter((cartItem) => cartItem.id !== action.payload.id),
       };
 
-    case 'ADD_TO_FAVOURITE':
-      return { ...state, wishlist: [...state.wishlist, { ...action.payload }], cart: state.cart.filter((cartItem) => cartItem.id !== action.payload.id) };
+    case 'TOGGLE_FAVOURITE':
+      return {
+        ...state,
+        wishlist: state.wishlist.find((wishlistItem) => wishlistItem.id === action.payload.id) ? state.wishlist.filter((wishlistItem) => wishlistItem.id !== action.payload.id) : [...state.wishlist, { ...action.payload }],
+        cart: state.cart.filter((cartItem) => cartItem.id !== action.payload.id),
+      };
 
     default:
       throw new Error('error in reducer');

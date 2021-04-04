@@ -11,6 +11,13 @@ export function Cart() {
         : cart.map((cartItem) => {
             return <CartCard cartItem={cartItem} />;
           })}
+
+      <div>Total Price</div>
+
+      <div>
+        <div>Subtotal ={cart.reduce((total, current) => total + current.price * current.quantity, 0)}</div>
+        <div>Total = {cart.reduce((total, current) => total + current.price * current.quantity, 0)}</div>
+      </div>
     </div>
   );
 }

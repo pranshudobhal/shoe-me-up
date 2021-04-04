@@ -1,10 +1,18 @@
 import React from 'react';
 import { useData } from './dataContext';
 
-export default function CartCard({ wishlistItem }) {
+export default function WishlistCard({ wishlistItem }) {
   const { id, image, productName, name, price, level } = wishlistItem;
 
-  const { dataDispatch } = useData();
+  const { dataDispatch, wishlist } = useData();
+
+  function toggleFavourites() {
+    if (wishlist.find((wishlistItem) => wishlistItem.id === id)) {
+      return `Remove to Favourites`;
+    } else {
+      return `Add to Favourites`;
+    }
+  }
 
   return (
     <div
@@ -22,6 +30,7 @@ export default function CartCard({ wishlistItem }) {
       <div> Rs. {price} </div>
       <div> {level} </div>
       <button onClick={() => dataDispatch({ type: 'ADD_TO_CART', payload: wishlistItem })}>Add to Cart</button>
+      <button onClick={() => dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: wishlistItem })}>{toggleFavourites()}</button>
     </div>
   );
 }

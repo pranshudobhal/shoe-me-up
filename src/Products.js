@@ -2,8 +2,8 @@ import { data } from './data';
 import { useData } from './dataContext';
 import ProductCard from './ProductCard';
 
-export function Products() {
-  const { showInventoryAll, showFastDelivery, sortBy, dataDispatch } = useData();
+export function Products({ setRoute }) {
+  const { showInventoryAll, showFastDelivery, sortBy, dataDispatch, priceSlider } = useData();
 
   function getSortedData(productList, sortBy) {
     if (sortBy && sortBy === 'PRICE_HIGH_TO_LOW') {
@@ -17,14 +17,18 @@ export function Products() {
     return productList;
   }
 
-  function getFilteredData(productList, { showInventoryAll, showFastDelivery }) {
-    return productList.filter(({ fastDelivery }) => (showFastDelivery ? fastDelivery : true)).filter(({ inStock }) => (showInventoryAll ? true : inStock));
+  function getFilteredData(productList, { showInventoryAll, showFastDelivery, priceSlider }) {
+    return productList
+      .filter(({ fastDelivery }) => (showFastDelivery ? fastDelivery : true))
+      .filter(({ inStock }) => (showInventoryAll ? true : inStock))
+      .filter(({ price }) => price < Number(priceSlider));
   }
 
   const sortedData = getSortedData(data, sortBy);
   const filteredData = getFilteredData(sortedData, {
     showInventoryAll,
     showFastDelivery,
+    priceSlider,
   });
 
   return (
@@ -54,7 +58,22 @@ export function Products() {
             })
           }
         />{' '}
-        <label htmlFor="PRICE_LOW_TO_HIGH"> Price: Low - High </label> <br /> <br /> <label htmlFor="PRICE_RANGE"> Price Range </label> <input id="PRICE_RANGE" name="PRICE_RANGE" type="range" />
+        <label htmlFor="PRICE_LOW_TO_HIGH"> Price: Low - High </label> <br /> <br />
+        <label htmlFor="PRICE_RANGE"> Price Range </label>
+        <input
+          id="PRICE_RANGE"
+          name="PRICE_RANGE"
+          type="range"
+          min="0"
+          max="1000"
+          step="100"
+          onChange={(e) =>
+            dataDispatch({
+              type: 'PRICE_RANGE',
+              payload: e.target.value,
+            })
+          }
+        />
       </fieldset>
       <fieldset>
         <legend> Filters </legend>{' '}
@@ -86,7 +105,7 @@ export function Products() {
       <div className="App">
         {' '}
         {filteredData.map((product) => (
-          <ProductCard product={product} />
+          <ProductCard product={product} setRoute={setRoute} />
         ))}{' '}
       </div>
     </>

@@ -4,7 +4,15 @@ import { useData } from './dataContext';
 export default function CartCard({ cartItem }) {
   const { id, image, productName, name, price, level, quantity } = cartItem;
 
-  const { dataDispatch } = useData();
+  const { dataDispatch, wishlist } = useData();
+
+  function toggleFavourites() {
+    if (wishlist.find((wishlistItem) => wishlistItem.id === id)) {
+      return `Remove to Favourites`;
+    } else {
+      return `Add to Favourites`;
+    }
+  }
 
   return (
     <div
@@ -28,7 +36,7 @@ export default function CartCard({ cartItem }) {
       </button>
       <br />
       <button onClick={() => dataDispatch({ type: 'REMOVE_FROM_CART', payload: cartItem })}>Remove</button>
-      <button onClick={() => dataDispatch({ type: 'ADD_TO_FAVOURITE', payload: cartItem })}>Add to Favourites</button>
+      <button onClick={() => dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: cartItem })}>{toggleFavourites()}</button>
     </div>
   );
 }
