@@ -2,7 +2,7 @@ import './App.css';
 import { Products } from './Products';
 import { Wishlist } from './Wishlist';
 import { Cart } from './Cart';
-import NoMatch from './erro404';
+// import NoMatch from './erro404';
 
 import { useState } from 'react';
 // import { Routes, Route, NavLink } from 'react-router-dom';
