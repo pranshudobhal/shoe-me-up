@@ -1,0 +1,29 @@
+.container {
+  position: fixed;
+  bottom: -1px;
+  /* check why bottom: 0 not working later */
+  height: 8vh;
+  background-color: var(--white);
+  width: 100vw;
+  display: flex;
+  box-shadow: 0 0 2px 0 rgb(148 150 159 / 30%);
+  align-items: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.sort {
+  width: 50%;
+  height: 100%;
+  border-right: 1px solid var(--border-color);
+  display: grid;
+  place-items: center;
+}
+
+.filter {
+  width: 50%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}

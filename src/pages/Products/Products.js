@@ -1,6 +1,8 @@
 import { data } from '../../data';
 import { useData } from '../../context/';
-import ProductCard from './components/ProductCard';
+import { ProductCard } from './components/ProductCard';
+import { ProductOperations } from './components/ProductOperations';
+import styles from './Products.module.css';
 
 export function Products({ setRoute }) {
   const { showInventoryAll, showFastDelivery, sortBy, dataDispatch, priceSlider } = useData();
@@ -32,7 +34,8 @@ export function Products({ setRoute }) {
   });
 
   return (
-    <>
+    <div className={styles.container}>
+      <ProductOperations />
       <fieldset>
         <legend> Sort By </legend>{' '}
         <input
@@ -108,6 +111,6 @@ export function Products({ setRoute }) {
           <ProductCard product={product} setRoute={setRoute} />
         ))}{' '}
       </div>
-    </>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useData } from '../../../context';
 
-export default function ProductCard({ product, setRoute }) {
+export function ProductCard({ product, setRoute }) {
   const { id, image, productName, name, price, inStock, fastDelivery, level } = product;
   const { dataDispatch, cart, wishlist } = useData();
 

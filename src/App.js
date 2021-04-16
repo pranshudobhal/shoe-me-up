@@ -1,21 +1,19 @@
 import './App.css';
-import { Home, Cart, Products, Wishlist, Error404 } from './pages';
-
 import { useState } from 'react';
 import { Routes, Route, NavLink } from 'react-router-dom';
+import { Home, Cart, Products, Wishlist, Error404 } from './pages';
+import { NavbarMobile } from './components';
 
 function App() {
-  const [route, setRoute] = useState('products');
-
   return (
     <>
-      <button onClick={() => setRoute('products')}>Products</button>
+      {/* <button onClick={() => setRoute('products')}>Products</button>
       <button onClick={() => setRoute('wishlist')}>Wishlist</button>
       <button onClick={() => setRoute('cart')}>Cart</button>
 
       {route === 'products' && <Products setRoute={setRoute} />}
       {route === 'wishlist' && <Wishlist />}
-      {route === 'cart' && <Cart />}
+      {route === 'cart' && <Cart />} */}
 
       {/* <nav>
         <NavLink end to="/" style={{ textDecoration: 'none' }} activeStyle={{ color: 'red' }}>
@@ -37,8 +35,11 @@ function App() {
         <Route path="*" element={<NoMatch />} />
       </Routes> */}
 
+      <NavbarMobile />
+
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<Products />} />
         <Route path="/products" element={<Products />} />
         {/* <Route path="/:productID" element={<ProductPage />} /> */}
         <Route path="/cart" element={<Cart />} />

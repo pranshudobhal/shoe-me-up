@@ -1,0 +1,26 @@
+.container {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white);
+  width: 100vw;
+  height: 8vh;
+  padding: 0 1rem;
+  box-shadow: 0 1px 2px 0 rgb(148 150 159 / 30%);
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions span {
+  margin: 0 0.4rem;
+}
