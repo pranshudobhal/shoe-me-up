@@ -1,11 +1,8 @@
 import './App.css';
-import { Products } from './Products';
-import { Wishlist } from './Wishlist';
-import { Cart } from './Cart';
-// import NoMatch from './erro404';
+import { Home, Cart, Products, Wishlist, Error404 } from './pages';
 
 import { useState } from 'react';
-// import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router-dom';
 
 function App() {
   const [route, setRoute] = useState('products');
@@ -39,6 +36,15 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NoMatch />} />
       </Routes> */}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        {/* <Route path="/:productID" element={<ProductPage />} /> */}
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
     </>
   );
 }

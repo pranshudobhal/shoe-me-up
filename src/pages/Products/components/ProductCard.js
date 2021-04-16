@@ -1,5 +1,4 @@
-import React from 'react';
-import { useData } from './dataContext';
+import { useData } from '../../../context';
 
 export default function ProductCard({ product, setRoute }) {
   const { id, image, productName, name, price, inStock, fastDelivery, level } = product;

@@ -1,5 +1,4 @@
-import React from 'react';
-import { useData } from './dataContext';
+import { useData } from '../../../context';
 
 export default function WishlistCard({ wishlistItem }) {
   const { id, image, productName, name, price, level } = wishlistItem;

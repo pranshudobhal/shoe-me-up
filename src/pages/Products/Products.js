@@ -1,6 +1,6 @@
-import { data } from './data';
-import { useData } from './dataContext';
-import ProductCard from './ProductCard';
+import { data } from '../../data';
+import { useData } from '../../context/';
+import ProductCard from './components/ProductCard';
 
 export function Products({ setRoute }) {
   const { showInventoryAll, showFastDelivery, sortBy, dataDispatch, priceSlider } = useData();

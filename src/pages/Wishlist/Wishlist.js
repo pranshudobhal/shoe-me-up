@@ -1,5 +1,5 @@
-import { useData } from './dataContext';
-import WishlistCard from './WishlistCard';
+import { useData } from '../../context';
+import WishlistCard from './components/WishlistCard';
 
 export function Wishlist() {
   const { wishlist } = useData();

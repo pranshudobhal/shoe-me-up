@@ -1,5 +1,5 @@
-import { useData } from './dataContext';
-import CartCard from './CartCard';
+import { useData } from '../../context';
+import CartCard from './components/CartCard';
 
 export function Cart() {
   const { cart } = useData();
