@@ -2,16 +2,13 @@
   color: var(--white);
 }
 
-.cardHeader {
-  z-index: -1;
-}
-
 .cardHeaderSpan {
   cursor: pointer;
 }
 
 .cardOverride {
   width: 48vw;
+  z-index: 1;
 }
 
 .button {

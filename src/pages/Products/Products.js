@@ -34,7 +34,7 @@ export function Products({ setRoute }) {
   });
 
   return (
-    <div className={styles.container}>
+    <div>
       <ProductOperations />
       {/* <fieldset>
         <legend> Sort By </legend>{' '}
