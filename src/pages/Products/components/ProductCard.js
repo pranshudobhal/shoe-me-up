@@ -1,4 +1,8 @@
 import { useData } from '../../../context';
+import styles from './ProductCard.module.css';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { useState } from 'react';
 
 export function ProductCard({ product, setRoute }) {
   const { id, image, productName, name, price, inStock, fastDelivery, level } = product;
@@ -6,10 +10,15 @@ export function ProductCard({ product, setRoute }) {
 
   function toggleAddOrRemoveToCart() {
     if (cart.find((cartItem) => cartItem.id === id)) {
-      return <button onClick={() => setRoute('cart')}>Go to Cart</button>;
+      return (
+        <button className="btn btn-primary" onClick={() => setRoute('cart')}>
+          Go to Cart
+        </button>
+      );
     } else {
       return (
         <button
+          className="btn btn-primary"
           onClick={() =>
             dataDispatch({
               type: 'ADD_TO_CART',
@@ -23,28 +32,55 @@ export function ProductCard({ product, setRoute }) {
     }
   }
 
-  function toggleFavourites() {
-    if (wishlist.find((wishlistItem) => wishlistItem.id === id)) {
-      return `Remove to Favourites`;
-    } else {
-      return `Add to Favourites`;
-    }
-  }
+  const inWishlist = wishlist.find((wishlistItem) => wishlistItem.id === id);
+  console.log(inWishlist);
 
   return (
-    <div
-      key={id}
-      style={{
-        border: '1px solid #4B5563',
-        borderRadius: '0 0 0.5rem 0.5rem',
-        margin: '1rem',
-        maxWidth: '30%',
-        padding: '0 0 1rem',
-      }}
-    >
-      <img src={image} width="100%" height="auto" alt={productName} /> <h3> {name} </h3> <div> Rs. {price} </div> {inStock && <div> In Stock </div>} {!inStock && <div> Out of Stock </div>} <div> {level} </div> {fastDelivery ? <div> Fast Delivery </div> : <div> 3 days minimum </div>}
-      {toggleAddOrRemoveToCart()}
-      <button onClick={() => dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: product })}>{toggleFavourites()}</button>
+    <div className={`card card-image ${styles.cardOverride}`}>
+      <div className={`${styles.cardHeader} card-header`}>
+        <img src={image} alt={productName} />
+        <span
+          className={`${styles.cardHeaderSpan}`}
+          onClick={() => {
+            console.log('clicked');
+            dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: product });
+          }}
+        >
+          {/* {inWishlist ? 'favorite' : 'favorite_border'} */}
+          {inWishlist ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        </span>
+      </div>
+      <div className="card-body">
+        <h5 className="card-title">Nike Mercurial Dream Speed Superfly 8 Academy MG</h5>
+        <p className="card-text">Multi-Ground Football Boot</p>
+        <div className="card-price">₹ 8,995</div>
+        {toggleAddOrRemoveToCart()}
+        <span
+          className={`${styles.cardHeaderSpan}`}
+          onClick={() => {
+            console.log('clicked');
+            dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: product });
+          }}
+        >
+          {/* {inWishlist ? 'favorite' : 'favorite_border'} */}
+          {inWishlist ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        </span>
+      </div>
     </div>
   );
 }
+
+//   return (
+//     <div>
+//       <img src={image} width="100%" height="auto" alt={productName} />
+//       <h3> {name} </h3>
+//       <div> Rs. {price} </div>
+//       {inStock && <div> In Stock </div>}
+//       {!inStock && <div> Out of Stock </div>}
+//       <div> {level} </div>
+//       {fastDelivery ? <div> Fast Delivery </div> : <div> 3 days minimum </div>}
+//       {toggleAddOrRemoveToCart()}
+//       <button onClick={() => dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: product })}>{inWishlist ? 'fav' : 'not fav'}</button>
+//     </div>
+//   );
+// }

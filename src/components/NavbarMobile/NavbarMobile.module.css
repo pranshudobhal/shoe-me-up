@@ -9,6 +9,7 @@
   height: 8vh;
   padding: 0 1rem;
   box-shadow: 0 1px 2px 0 rgb(148 150 159 / 30%);
+  z-index: 2;
 }
 
 .logo h1 {

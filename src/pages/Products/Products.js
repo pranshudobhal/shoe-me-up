@@ -36,7 +36,7 @@ export function Products({ setRoute }) {
   return (
     <div className={styles.container}>
       <ProductOperations />
-      <fieldset>
+      {/* <fieldset>
         <legend> Sort By </legend>{' '}
         <input
           type="radio"
@@ -104,12 +104,11 @@ export function Products({ setRoute }) {
           }
         />{' '}
         <label htmlFor="TOGGLE_DELIVERY"> Fast Delivery Only </label>{' '}
-      </fieldset>
-      <div className="App">
-        {' '}
+      </fieldset> */}
+      <div className={styles.container}>
         {filteredData.map((product) => (
           <ProductCard product={product} setRoute={setRoute} />
-        ))}{' '}
+        ))}
       </div>
     </div>
   );
