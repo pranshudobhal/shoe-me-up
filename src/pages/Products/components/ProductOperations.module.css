@@ -20,6 +20,52 @@
   border-right: 1px solid var(--border-color);
   display: grid;
   place-items: center;
+  position: relative;
+}
+
+.sortModal {
+  position: absolute;
+  bottom: -1px;
+  background-color: var(--white);
+  height: 40vh;
+  width: 100vw;
+  text-transform: none;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #d7d7d7;
+  /* box-shadow: 0 0 2px 0 rgb(148 150 159 / 30%); */
+  box-shadow: 0 0 0 100vh rgb(0 0 0 / 50%);
+}
+
+.sortModal h3 {
+  font-weight: 500;
+  font-size: 1.75rem;
+  margin: 1rem 0 2rem 0;
+}
+
+.sortModal li {
+  list-style-type: none;
+  margin: 1rem 0;
+}
+
+.sortModal label {
+  font-weight: 500;
+  padding-left: 0.25rem;
+}
+
+.sortModal span {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+}
+
+.sortModal span svg {
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
 }
 
 .filter {

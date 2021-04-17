@@ -5,15 +5,13 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useNavigate } from 'react-router';
 
 export function ProductCard({ product, setRoute }) {
-  const { id, image, productName, name, price, inStock, fastDelivery, level } = product;
+  const { id, image, productName, name, price } = product;
   const { dataDispatch, cart, wishlist } = useData();
-
   const navigate = useNavigate();
 
   const isInCart = cart.find((cartItem) => cartItem.id === id);
 
   const inWishlist = wishlist.find((wishlistItem) => wishlistItem.id === id);
-  console.log(inWishlist);
 
   return (
     <div className={`card card-image ${styles.cardOverride}`}>
@@ -24,9 +22,9 @@ export function ProductCard({ product, setRoute }) {
         </span>
       </div>
       <div className="card-body">
-        <h5 className="card-title">Nike Mercurial Dream Speed Superfly 8 Academy MG</h5>
+        <h5 className="card-title">{name}</h5>
         <p className="card-text">Multi-Ground Football Boot</p>
-        <div className="card-price">₹ 8,995</div>
+        <div className="card-price">₹ {price}</div>
 
         <button
           className="btn btn-primary"
@@ -45,18 +43,3 @@ export function ProductCard({ product, setRoute }) {
     </div>
   );
 }
-
-//   return (
-//     <div>
-//       <img src={image} width="100%" height="auto" alt={productName} />
-//       <h3> {name} </h3>
-//       <div> Rs. {price} </div>
-//       {inStock && <div> In Stock </div>}
-//       {!inStock && <div> Out of Stock </div>}
-//       <div> {level} </div>
-//       {fastDelivery ? <div> Fast Delivery </div> : <div> 3 days minimum </div>}
-//       {toggleAddOrRemoveToCart()}
-//       <button onClick={() => dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: product })}>{inWishlist ? 'fav' : 'not fav'}</button>
-//     </div>
-//   );
-// }

@@ -1,5 +1,4 @@
 import './App.css';
-import { useState } from 'react';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import { Home, Cart, Products, Wishlist, Error404 } from './pages';
 import { NavbarMobile } from './components';
