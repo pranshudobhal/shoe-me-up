@@ -1,0 +1,38 @@
+.card {
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid var(--card-border);
+  padding-top: 2rem;
+}
+
+.cardBodyOverride {
+  padding: 0;
+}
+
+.cardPrice {
+  font-weight: 400;
+  color: RGB(17, 17, 17);
+  font-size: 0.875rem;
+  padding: 0.25rem 0 0;
+}
+
+.customSelect1::before {
+  font-family: 'Material Icons';
+  content: '\e5cf';
+  position: absolute;
+  right: 8rem;
+  color: #272727;
+}
+
+.customSelect::before {
+  font-family: 'Material Icons';
+  content: '\e5cf';
+  color: #272727;
+  position: absolute;
+  right: 0.5rem;
+}
+
+.card button {
+  font-size: 0.75rem;
+  margin-right: 1rem;
+}

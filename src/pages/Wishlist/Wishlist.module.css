@@ -1,0 +1,51 @@
+/*
+* commented row-gap for cards with border-right and bottom in ProductCard.module.css
+*/
+
+/* .container {
+  margin: 5rem 0;
+  display: grid;
+  padding: 0 1vw;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 2rem;
+} */
+
+.container {
+  margin: 2rem 0;
+  display: grid;
+  padding: 0 2vw;
+  grid-template-columns: repeat(2, 1fr);
+  /* row-gap: 2rem; */
+}
+
+.pageName {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 5rem;
+  padding-left: 1.25rem;
+}
+
+.emptyWishlist {
+  height: 60vh;
+  width: 80vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.emptyWishlist h3 {
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.emptyWishlist p {
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+
+.emptyWishlist button {
+  margin-top: 2rem;
+}

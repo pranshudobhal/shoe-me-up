@@ -2,7 +2,10 @@
   --primary-color: #272727;
   --secondary-color: #ff3f6c;
   --white: #fff;
+  --gray: #6b7280;
   --border-color: #d7d7d7;
+  --card-border: rgb(229, 229, 229);
+  /* overflow: hidden; */
 }
 
 body {

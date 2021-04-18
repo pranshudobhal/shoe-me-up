@@ -6,7 +6,9 @@ import { useNavigate } from 'react-router';
 
 export function ProductCard({ product, setRoute }) {
   const { id, image, productName, name, price } = product;
+
   const { dataDispatch, cart, wishlist } = useData();
+
   const navigate = useNavigate();
 
   const isInCart = cart.find((cartItem) => cartItem.id === id);
