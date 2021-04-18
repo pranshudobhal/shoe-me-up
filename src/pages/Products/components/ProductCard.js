@@ -21,7 +21,7 @@ export function ProductCard({ product, setRoute }) {
           {inWishlist ? <FavoriteIcon style={{ color: '#ff3f6c' }} /> : <FavoriteBorderIcon />}
         </span>
       </div>
-      <div className="card-body">
+      <div className={`card-body ${styles.cardBodyOverride}`}>
         <h5 className="card-title">{name}</h5>
         <p className="card-text">Multi-Ground Football Boot</p>
         <div className="card-price">₹ {price}</div>

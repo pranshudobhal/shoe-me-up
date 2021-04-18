@@ -1,7 +1,19 @@
-.container {
+/*
+* commented row-gap for cards with border-right and bottom in ProductCard.module.css
+*/
+
+/* .container {
   margin: 5rem 0;
   display: grid;
   padding: 0 1vw;
   grid-template-columns: repeat(2, 1fr);
   row-gap: 2rem;
+} */
+
+.container {
+  margin: 5rem 0;
+  display: grid;
+  padding: 0 2vw;
+  grid-template-columns: repeat(2, 1fr);
+  /* row-gap: 2rem; */
 }

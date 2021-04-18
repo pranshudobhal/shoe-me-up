@@ -6,9 +6,29 @@
   cursor: pointer;
 }
 
+/*
+* comment border-right and bottom and uncomment row gap in Products.module.css
+* for cards with no border and enough spacing
+*/
+
 .cardOverride {
   width: 48vw;
   z-index: 1;
+  box-shadow: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgb(229, 229, 229);
+}
+
+/*
+* border-right only on odd numbered cards
+*/
+
+.cardOverride:nth-of-type(2n + 1) {
+  border-right: 1px solid rgb(229, 229, 229);
+}
+
+.cardBodyOverride {
+  flex-grow: 1;
 }
 
 .button {

@@ -17,12 +17,16 @@ export function NavbarMobile() {
         {/* <span>
           <SearchIcon />
         </span> */}
-        <span>
-          <FavoriteBorderOutlinedIcon style={{ fontSize: 27 }} />
-        </span>
-        <span>
-          <LocalMallOutlinedIcon style={{ fontSize: 27 }} />
-        </span>
+        <NavLink to="/wishlist" className={styles.navlink}>
+          <span>
+            <FavoriteBorderOutlinedIcon style={{ fontSize: 27 }} />
+          </span>
+        </NavLink>
+        <NavLink to="/cart" className={styles.navlink}>
+          <span>
+            <LocalMallOutlinedIcon style={{ fontSize: 27 }} />
+          </span>
+        </NavLink>
         <span>
           <MenuOutlinedIcon style={{ fontSize: 30 }} />
         </span>

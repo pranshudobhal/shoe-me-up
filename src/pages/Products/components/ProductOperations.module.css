@@ -1,7 +1,11 @@
+/* 
+* --------------BUG--------------
+* bottom: 0 not working proerply in container
+*/
+
 .container {
   position: fixed;
   bottom: -1px;
-  /* check why bottom: 0 not working later */
   height: 8vh;
   background-color: var(--white);
   width: 100vw;
@@ -23,36 +27,51 @@
   position: relative;
 }
 
-.sortModal {
+.modal {
   position: absolute;
-  bottom: -1px;
+  bottom: -2px;
   background-color: var(--white);
-  height: 40vh;
   width: 100vw;
   text-transform: none;
   padding: 1.5rem 2rem;
   border-top: 1px solid #d7d7d7;
-  /* box-shadow: 0 0 2px 0 rgb(148 150 159 / 30%); */
   box-shadow: 0 0 0 100vh rgb(0 0 0 / 50%);
 }
 
-.sortModal h3 {
+.sortModal {
+  height: 30vh;
+}
+
+.modal h3 {
   font-weight: 500;
   font-size: 1.75rem;
   margin: 1rem 0 2rem 0;
 }
 
-.sortModal li {
+.modal ul {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(229, 229, 229);
+}
+
+.modal ul:last-child {
+  border-bottom: none;
+}
+
+.sortModal ul {
+  border-bottom: none;
+}
+
+.modal li {
   list-style-type: none;
   margin: 1rem 0;
 }
 
-.sortModal label {
+.modal label {
   font-weight: 500;
   padding-left: 0.25rem;
 }
 
-.sortModal span {
+.modal span {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -62,10 +81,19 @@
   border-radius: 50%;
 }
 
-.sortModal span svg {
+.modal span svg {
   display: grid;
   place-items: center;
   font-size: 1.5rem;
+}
+
+.modal h3 ~ h4 {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.modal h4 {
+  margin-top: 2rem;
 }
 
 .filter {
@@ -73,4 +101,8 @@
   height: 100%;
   display: grid;
   place-items: center;
+}
+
+.filterModal {
+  height: 65vh;
 }
