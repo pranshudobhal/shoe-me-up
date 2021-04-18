@@ -14,7 +14,7 @@ export function Wishlist() {
       {wishlist.length === 0 ? (
         <div className={styles.emptyWishlist}>
           <h3>YOUR WISHLIST IS EMPTY</h3>
-          <p>Save your favorite pieces of clothing in one place. Add now, buy later.</p>
+          <p>Save your favorite pieces of shoes in one place. Add now, buy later.</p>
           <button className="btn btn-secondary-outline" onClick={() => navigate('/products')}>
             Continue Shopping
           </button>

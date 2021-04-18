@@ -19,14 +19,14 @@ export function CartCard({ cartItem }) {
           <p className="card-text">Football Boot</p>
           <div className="card-text">
             <div className={`select ${styles.customSelect}`}></div>
-            <label for="size">Size</label>
+            <label htmlFor="size">Size</label>
             <select name="size" id="size" style={{ height: 'auto' }}>
               <option value="5">5</option>
               <option value="6">6</option>
               <option value="7">7</option>
             </select>
             <div className={`select ${styles.customSelect1}`}></div>
-            <label for="quantity">Quantity</label>
+            <label htmlFor="quantity">Quantity</label>
             <select name="quantity" id="quantity" style={{ height: 'auto' }}>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -41,7 +41,7 @@ export function CartCard({ cartItem }) {
             {!isInWishlist ? 'Move to Favorites' : 'Remove from Favorites'}
           </button>
         </div>
-        <div className={`${styles.cardPrice}`}>₹ {price}</div>
+        <div className={styles.cardPrice}>₹{price}</div>
       </div>
     </div>
   );
