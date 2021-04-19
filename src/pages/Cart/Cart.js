@@ -16,6 +16,8 @@ export function Cart() {
 
   const cartLengthText = cartLength > 1 ? 'Items' : 'Item';
 
+  const totalItems = cart.reduce((total, current) => total + Number(current.quantity), 0);
+
   return (
     <div className={styles.cartContainer}>
       {cartLength === 0 ? (
@@ -32,7 +34,7 @@ export function Cart() {
             <h1 className={styles.pageName}>Cart</h1>
             <div className={styles.cartOverall}>
               <span>
-                {cartLength} {cartLengthText} |
+                {totalItems} {cartLengthText} |
               </span>
               <span> ₹{totalPrice}</span>
             </div>
@@ -52,7 +54,7 @@ export function Cart() {
             </div>
             <div className={styles.priceText}>
               <span>Discount on MRP</span>
-              <span>₹{discountOnMRP}</span>
+              <span className={styles.discount}>&#8211;₹{discountOnMRP}</span>
             </div>
             <div className={styles.priceText}>
               <span>Delivery Charges</span>

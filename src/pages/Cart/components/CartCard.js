@@ -2,7 +2,7 @@ import { useData } from '../../../context';
 import styles from './CartCard.module.css';
 
 export function CartCard({ cartItem }) {
-  const { id, image, name, price } = cartItem;
+  const { id, image, name, price, quantity } = cartItem;
 
   const { dataDispatch, wishlist } = useData();
 
@@ -27,11 +27,27 @@ export function CartCard({ cartItem }) {
             </select>
             <div className={`select ${styles.customSelect1}`}></div>
             <label htmlFor="quantity">Quantity</label>
-            <select name="quantity" id="quantity" style={{ height: 'auto' }}>
+            <select
+              onChange={(e) =>
+                dataDispatch({
+                  type: 'UPDATE_QUANTITY',
+                  payload: { cartItemID: id, value: e.target.value },
+                })
+              }
+              name="quantity"
+              id="quantity"
+              style={{ height: 'auto' }}
+            >
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              {quantity}
             </select>
           </div>
           <button className="btn btn-primary-text" onClick={() => dataDispatch({ type: 'REMOVE_FROM_CART', payload: cartItem })}>
@@ -41,7 +57,7 @@ export function CartCard({ cartItem }) {
             {!isInWishlist ? 'Move to Favorites' : 'Remove from Favorites'}
           </button>
         </div>
-        <div className={styles.cardPrice}>₹{price}</div>
+        <div className={styles.cardPrice}>₹{price * quantity}</div>
       </div>
     </div>
   );

@@ -61,29 +61,15 @@ const reducer = (state, action) => {
     case 'ADD_TO_CART':
       return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }], wishlist: state.wishlist.filter((wishlistItem) => wishlistItem.id !== action.payload.id) };
 
-    case 'INCREMENT_IN_CART':
+    case 'UPDATE_QUANTITY':
       return {
         ...state,
         cart: state.cart.map((cartItem) => {
-          if (action.payload.quantity < 9 && cartItem.id === action.payload.id) {
-            return { ...cartItem, quantity: cartItem.quantity + 1 };
+          if (cartItem.id === action.payload.cartItemID) {
+            return { ...cartItem, quantity: action.payload.value };
           }
           return cartItem;
         }),
-      };
-
-    case 'DECREMENT_IN_CART':
-      return {
-        ...state,
-        cart: state.cart
-          .map((cartItem) => {
-            if (action.payload.quantity > 1 && cartItem.id === action.payload.id) {
-              return { ...cartItem, quantity: cartItem.quantity - 1 };
-            } else {
-              return undefined;
-            }
-          })
-          .filter((cartItem) => cartItem !== undefined),
       };
 
     case 'REMOVE_FROM_CART':

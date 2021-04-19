@@ -84,8 +84,12 @@
   font-size: 1rem;
 }
 
+.priceText .discount {
+  color: var(--discount-green);
+}
+
 .priceText .delivery {
-  color: var(--secondary-color);
+  color: var(--discount-green);
 }
 
 .checkoutButtonContainer {
