@@ -36,11 +36,18 @@ export function Products({ setRoute }) {
   return (
     <div>
       <ProductOperations />
-      <div className={styles.container}>
-        {filteredData.map((product) => (
-          <ProductCard product={product} setRoute={setRoute} />
-        ))}
-      </div>
+      {filteredData.length === 0 ? (
+        <div className={styles.emptyProducts}>
+          <h3>No Products available at this price</h3>
+          <p>Please broaden your price range</p>
+        </div>
+      ) : (
+        <div className={styles.container}>
+          {filteredData.map((product) => (
+            <ProductCard product={product} setRoute={setRoute} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

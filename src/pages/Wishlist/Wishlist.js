@@ -10,7 +10,7 @@ export function Wishlist() {
 
   return (
     <div>
-      <h1 className={styles.pageName}>{wishlist.length === 0 ? '' : 'Wishlist'}</h1>
+      {wishlist.length === 0 ? '' : <h1 className={styles.pageName}>Wishlist</h1>}
       {wishlist.length === 0 ? (
         <div className={styles.emptyWishlist}>
           <h3>YOUR WISHLIST IS EMPTY</h3>

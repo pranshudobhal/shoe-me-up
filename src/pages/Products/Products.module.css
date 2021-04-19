@@ -17,3 +17,24 @@
   grid-template-columns: repeat(2, 1fr);
   /* row-gap: 2rem; */
 }
+
+.emptyProducts {
+  height: 80vh;
+  width: 90vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.emptyProducts h3 {
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.emptyProducts p {
+  font-size: 0.75rem;
+  color: var(--gray);
+}
