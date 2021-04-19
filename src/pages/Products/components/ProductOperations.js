@@ -5,7 +5,9 @@ import CloseIcon from '@material-ui/icons/Close';
 
 export function ProductOperations() {
   const [sortModal, showSortModal] = useState(false);
+
   const [filterModal, showFilterModal] = useState(false);
+
   const { showInventoryAll, showFastDelivery, dataDispatch, priceSlider } = useData();
 
   return (
