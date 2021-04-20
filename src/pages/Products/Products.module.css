@@ -12,9 +12,71 @@
 
 .container {
   margin: 5rem 0;
+}
+
+.sidebar {
+  display: none;
+}
+
+.sidebar h3 {
+  font-weight: 500;
+  font-size: 1.75rem;
+  margin: 1rem 0 2rem 0;
+}
+
+.sidebar ul {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(229, 229, 229);
+}
+
+.sidebar ul:last-child {
+  border-bottom: none;
+}
+
+.sortsidebar ul {
+  border-bottom: none;
+}
+
+.sidebar li {
+  list-style-type: none;
+  margin: 1rem 0;
+}
+
+.sidebar label {
+  font-weight: 500;
+  padding-left: 0.25rem;
+  cursor: pointer;
+}
+
+.sidebar input {
+  cursor: pointer;
+}
+
+.sidebar h3 ~ h4 {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.sidebar h4 {
+  margin-top: 2rem;
+}
+
+.priceSlider li {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.priceSlider li:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.priceSlider li:last-child {
+  margin-top: 0.5rem;
+}
+
+.productContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  /* row-gap: 2rem; */
 }
 
 .emptyProducts {
@@ -36,4 +98,69 @@
 .emptyProducts p {
   font-size: 0.75rem;
   color: var(--gray);
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 95vw;
+    margin: 5rem auto;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .productContainer {
+    grid-template-columns: repeat(3, 1fr);
+    width: 75%;
+  }
+
+  .sidebar {
+    display: block;
+    width: 20%;
+    position: sticky;
+    top: 3rem;
+    height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+
+  .sidebar ul {
+    margin-right: 5rem;
+  }
+
+  .sidebar h3 {
+    font-size: 1.5rem;
+    margin: 1rem 0 0 0;
+  }
+
+  .sidebar li {
+    font-size: 0.9rem;
+  }
+
+  .sidebar h3 ~ h4 {
+    font-size: 1rem;
+  }
+
+  .sidebar h3 + h4 {
+    margin-top: 1.5rem;
+  }
+
+  .sidebar h4 {
+    margin-top: 2rem;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 20px;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+  }
+
+  .sidebar::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }

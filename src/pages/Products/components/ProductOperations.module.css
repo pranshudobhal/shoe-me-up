@@ -17,6 +17,12 @@
   z-index: 999;
 }
 
+@media screen and (min-width: 1024px) {
+  .container {
+    display: none;
+  }
+}
+
 .sort {
   width: 50%;
   height: 100%;
