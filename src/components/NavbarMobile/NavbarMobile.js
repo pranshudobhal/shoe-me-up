@@ -8,28 +8,30 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 export function NavbarMobile() {
   return (
     <div className={styles.container}>
-      <div className={styles.logo}>
-        <NavLink to="/" className={styles.navlink}>
-          <h1>ShoeMeUp</h1>
-        </NavLink>
-      </div>
-      <div className={styles.actions}>
-        {/* <span>
+      <div className={styles.navbarContainer}>
+        <div className={styles.logo}>
+          <NavLink to="/" className={styles.navlink}>
+            <h1>ShoeMeUp</h1>
+          </NavLink>
+        </div>
+        <div className={styles.actions}>
+          {/* <span>
           <SearchIcon />
         </span> */}
-        <NavLink to="/wishlist" className={styles.navlink}>
+          <NavLink to="/wishlist" className={styles.navlink}>
+            <span>
+              <FavoriteBorderOutlinedIcon style={{ fontSize: 27 }} />
+            </span>
+          </NavLink>
+          <NavLink to="/cart" className={styles.navlink}>
+            <span>
+              <LocalMallOutlinedIcon style={{ fontSize: 27 }} />
+            </span>
+          </NavLink>
           <span>
-            <FavoriteBorderOutlinedIcon style={{ fontSize: 27 }} />
+            <MenuOutlinedIcon style={{ fontSize: 30 }} />
           </span>
-        </NavLink>
-        <NavLink to="/cart" className={styles.navlink}>
-          <span>
-            <LocalMallOutlinedIcon style={{ fontSize: 27 }} />
-          </span>
-        </NavLink>
-        <span>
-          <MenuOutlinedIcon style={{ fontSize: 30 }} />
-        </span>
+        </div>
       </div>
     </div>
   );

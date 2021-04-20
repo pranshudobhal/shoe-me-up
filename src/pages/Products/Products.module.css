@@ -110,6 +110,7 @@
 
   .productContainer {
     grid-template-columns: repeat(3, 1fr);
+    row-gap: 2rem;
     width: 75%;
   }
 
@@ -123,7 +124,7 @@
   }
 
   .sidebar ul {
-    margin-right: 5rem;
+    margin-right: 2rem;
   }
 
   .sidebar h3 {

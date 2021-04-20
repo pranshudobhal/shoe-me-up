@@ -1,15 +1,22 @@
 .container {
+  width: 100vw;
   position: fixed;
   top: 0;
+  height: 8vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--white);
-  width: 100vw;
-  height: 8vh;
-  padding: 0 1rem;
-  box-shadow: 0 1px 2px 0 rgb(148 150 159 / 30%);
   z-index: 2;
+  background-color: var(--white);
+  box-shadow: 0 1px 2px 0 rgb(148 150 159 / 30%);
+}
+
+.navbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95vw;
+  margin: 0 auto;
 }
 
 .logo h1 {
@@ -24,4 +31,14 @@
 
 .actions span {
   margin: 0 0.4rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    height: 10vh;
+  }
+
+  .navbarContainer {
+    padding: 0 1rem;
+  }
 }
