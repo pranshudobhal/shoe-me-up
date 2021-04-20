@@ -12,7 +12,7 @@
 */
 
 .cardOverride {
-  width: 48vw;
+  width: 100%;
   z-index: 1;
   box-shadow: none;
   border-radius: 0;

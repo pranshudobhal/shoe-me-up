@@ -11,14 +11,13 @@
 } */
 
 .wishlistContainer {
-  margin: 5rem 0;
-  padding-bottom: 2rem;
+  padding: 5rem 0 2rem;
+  /* padding-bottom: 2rem; */
 }
 
 .container {
   margin: 2rem 0;
   display: grid;
-  padding: 0 2vw;
   grid-template-columns: repeat(2, 1fr);
   /* row-gap: 2rem; */
 }

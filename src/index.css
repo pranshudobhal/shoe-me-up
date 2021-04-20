@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 :root {
@@ -12,6 +13,11 @@
   --card-border: rgb(229, 229, 229);
   --discount-green: #03a685;
   /* overflow: hidden; */
+}
+
+::selection {
+  color: var(--white);
+  background-color: var(--primary-color);
 }
 
 body {
