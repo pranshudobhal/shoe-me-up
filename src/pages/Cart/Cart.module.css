@@ -120,7 +120,7 @@
 
 @media screen and (min-width: 1024px) {
   .cartContainer {
-    margin-top: 2rem;
+    padding: 7rem 0 6rem;
   }
 
   .cart {

@@ -12,7 +12,6 @@
 
 .wishlistContainer {
   padding: 5rem 0 2rem;
-  /* padding-bottom: 2rem; */
 }
 
 .wishlistItemsContainer {
@@ -70,7 +69,7 @@
 
 @media screen and (min-width: 1024px) {
   .wishlistContainer {
-    margin-top: 2rem;
+    padding: 7rem 0 2rem;
   }
 
   .container {

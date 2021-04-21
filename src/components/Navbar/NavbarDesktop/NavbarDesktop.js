@@ -28,9 +28,9 @@ export function NavbarDesktop() {
               <LocalMallOutlinedIcon style={{ fontSize: 27 }} />
             </span>
           </NavLink>
-          <span>
+          {/* <span>
             <MenuOutlinedIcon style={{ fontSize: 30 }} />
-          </span>
+          </span> */}
         </div>
       </div>
     </div>

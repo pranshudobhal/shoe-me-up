@@ -103,7 +103,7 @@
 @media screen and (min-width: 1024px) {
   .container {
     width: 95vw;
-    margin: 5rem auto;
+    margin: 7rem auto;
     display: flex;
     justify-content: space-evenly;
   }
@@ -118,7 +118,7 @@
     display: block;
     width: 20%;
     position: sticky;
-    top: 3rem;
+    top: 4rem;
     height: calc(100vh - 4rem);
     overflow-y: auto;
   }
