@@ -15,7 +15,7 @@
   /* padding-bottom: 2rem; */
 }
 
-.container {
+.wishlistItemsContainer {
   margin: 2rem 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -66,4 +66,37 @@
 
 .wishlistOverall span:first-child {
   color: var(--gray);
+}
+
+@media screen and (min-width: 1024px) {
+  .wishlistContainer {
+    margin-top: 2rem;
+  }
+
+  .container {
+    width: 90vw;
+    margin: 0 auto;
+  }
+
+  .wishlistItemsContainer {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2rem;
+    row-gap: 2rem;
+    width: 100%;
+  }
+
+  .pageTitle {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+    padding: 0 1rem;
+  }
+
+  .pageName {
+    margin-right: 0.75rem;
+  }
+
+  .wishlistOverall span {
+    font-size: 1.15rem;
+  }
 }

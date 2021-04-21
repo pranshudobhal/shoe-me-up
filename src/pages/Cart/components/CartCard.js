@@ -9,8 +9,8 @@ export function CartCard({ cartItem }) {
   const isInWishlist = wishlist.find((wishlistItem) => wishlistItem.id === id);
 
   return (
-    <div className={`card card-horizontal ${styles.card}`}>
-      <div className="card-header">
+    <div className={`card card-horizontal ${styles.card}`} style={{ maxWidth: '600px' }}>
+      <div className={`card-header ${styles.cardHeader}`}>
         <img className="img-responsive" src={image} alt={name} />
       </div>
       <div className={`card-body ${styles.cardBodyOverride}`}>

@@ -35,10 +35,6 @@
 
 @media screen and (min-width: 1024px) {
   .container {
-    height: 10vh;
-  }
-
-  .navbarContainer {
-    padding: 0 1rem;
+    display: none;
   }
 }

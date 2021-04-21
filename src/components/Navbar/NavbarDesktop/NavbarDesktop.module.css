@@ -1,0 +1,41 @@
+.container {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+    background-color: var(--white);
+    box-shadow: 0 1px 2px 0 rgb(148 150 159 / 30%);
+  }
+
+  .navbarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95vw;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .logo h1 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .actions span {
+    margin: 0 0.4rem;
+  }
+}

@@ -29,46 +29,50 @@ export function Cart() {
           </button>
         </div>
       ) : (
-        <>
+        <div className={styles.cart}>
           <div className={styles.pageTitle}>
             <h1 className={styles.pageName}>Cart</h1>
             <div className={styles.cartOverall}>
               <span>
-                {totalItems} {cartLengthText} |
+                {totalItems} {cartLengthText}{' '}
               </span>
-              <span> ₹{totalPrice}</span>
+              <span>| ₹{totalPrice}</span>
             </div>
           </div>
           <div className={styles.container}>
-            {cart.map((cartItem) => {
-              return <CartCard cartItem={cartItem} />;
-            })}
+            <div className={styles.cartItemContainer}>
+              {cart.map((cartItem) => {
+                return <CartCard cartItem={cartItem} />;
+              })}
+            </div>
+            <div className={styles.price}>
+              <div className={styles.priceContainer}>
+                <h3>
+                  Price Details ({cart.length} {cartLengthText})
+                </h3>
+                <div className={styles.priceText}>
+                  <span>Total MRP</span>
+                  <span>₹{totalPrice}</span>
+                </div>
+                <div className={styles.priceText}>
+                  <span>Discount on MRP</span>
+                  <span className={styles.discount}>&#8211;₹{discountOnMRP}</span>
+                </div>
+                <div className={styles.priceText}>
+                  <span>Delivery Charges</span>
+                  <span className={styles.delivery}>FREE</span>
+                </div>
+                <div className={styles.priceText}>
+                  <span>Total Amount</span>
+                  <span>₹{totalPrice - discountOnMRP}</span>
+                </div>
+              </div>
+              <div className={styles.checkoutButtonContainer}>
+                <button className={styles.checkoutButton}>PLACE ORDER</button>
+              </div>
+            </div>
           </div>
-          <div className={styles.priceContainer}>
-            <h3>
-              Price Details ({cart.length} {cartLengthText})
-            </h3>
-            <div className={styles.priceText}>
-              <span>Total MRP</span>
-              <span>₹{totalPrice}</span>
-            </div>
-            <div className={styles.priceText}>
-              <span>Discount on MRP</span>
-              <span className={styles.discount}>&#8211;₹{discountOnMRP}</span>
-            </div>
-            <div className={styles.priceText}>
-              <span>Delivery Charges</span>
-              <span className={styles.delivery}>FREE</span>
-            </div>
-            <div className={styles.priceText}>
-              <span>Total Amount</span>
-              <span>₹{totalPrice - discountOnMRP}</span>
-            </div>
-          </div>
-          <div className={styles.checkoutButtonContainer}>
-            <button className={styles.checkoutButton}>PLACE ORDER</button>
-          </div>
-        </>
+        </div>
       )}
     </div>
   );

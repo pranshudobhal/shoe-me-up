@@ -23,7 +23,7 @@ export function Wishlist() {
           </button>
         </div>
       ) : (
-        <>
+        <div className={styles.container}>
           <div className={styles.pageTitle}>
             <h1 className={styles.pageName}>Wishlist</h1>
             <div className={styles.wishlistOverall}>
@@ -32,12 +32,12 @@ export function Wishlist() {
               </span>
             </div>
           </div>
-          <div className={styles.container}>
+          <div className={styles.wishlistItemsContainer}>
             {wishlist.map((wishlistItem) => {
               return <WishlistCard wishlistItem={wishlistItem} />;
             })}
           </div>
-        </>
+        </div>
       )}
     </div>
   );

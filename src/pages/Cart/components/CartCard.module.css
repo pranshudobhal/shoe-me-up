@@ -36,3 +36,22 @@
   font-size: 0.75rem;
   margin-right: 1rem;
 }
+
+@media screen and (min-width: 1024px) {
+  .card {
+    padding-bottom: 2rem;
+  }
+
+  .cardBodyOverride {
+    padding-left: 1rem;
+  }
+
+  .card button {
+    margin-top: 0.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .customSelect1::before {
+    right: 8.75rem;
+  }
+}
