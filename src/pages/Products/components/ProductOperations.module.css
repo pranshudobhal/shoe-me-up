@@ -35,7 +35,7 @@
 
 .modal {
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   background-color: var(--white);
   width: 100vw;
   text-transform: none;

@@ -93,7 +93,7 @@
 
 .checkoutButtonContainer {
   position: fixed;
-  bottom: -3px;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
