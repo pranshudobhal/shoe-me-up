@@ -1,11 +1,11 @@
-import { data } from '../../data';
+// import { data } from '../../data';
 import { useData } from '../../context/';
 import { ProductCard } from './components/ProductCard';
 import { ProductOperations } from './components/ProductOperations';
 import styles from './Products.module.css';
 
 export function Products({ setRoute }) {
-  const { showInventoryAll, showFastDelivery, sortBy, priceSlider, dataDispatch } = useData();
+  const { products: data, showInventoryAll, showFastDelivery, sortBy, priceSlider } = useData();
 
   function getSortedData(productList, sortBy) {
     if (sortBy && sortBy === 'PRICE_HIGH_TO_LOW') {
@@ -34,24 +34,30 @@ export function Products({ setRoute }) {
   });
 
   return (
-    <div>
-      <ProductOperations />
-      {filteredData.length === 0 ? (
-        <div className={styles.emptyProducts}>
-          <h3>No Products available at this price</h3>
-          <p>Please broaden your price range</p>
+    <>
+      {data.length !== 0 ? (
+        <div>
+          <ProductOperations />
+          {filteredData.length === 0 ? (
+            <div className={styles.emptyProducts}>
+              <h3>No Products available at this price</h3>
+              <p>Please broaden your price range</p>
+            </div>
+          ) : (
+            <div className={styles.container}>
+              <Sidebar />
+              <div className={styles.productContainer}>
+                {filteredData.map((product) => (
+                  <ProductCard product={product} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       ) : (
-        <div className={styles.container}>
-          <Sidebar />
-          <div className={styles.productContainer}>
-            {filteredData.map((product) => (
-              <ProductCard product={product} setRoute={setRoute} />
-            ))}
-          </div>
-        </div>
+        <h1 style={{ marginTop: '5rem' }}>loadeeeeeeeeeeeeer</h1>
       )}
-    </div>
+    </>
   );
 }
 

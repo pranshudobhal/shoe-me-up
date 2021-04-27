@@ -5,7 +5,7 @@
 
 .container {
   position: fixed;
-  bottom: -1px;
+  bottom: 0;
   height: 8vh;
   background-color: var(--white);
   width: 100vw;

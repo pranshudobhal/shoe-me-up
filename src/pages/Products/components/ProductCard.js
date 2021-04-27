@@ -4,7 +4,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useNavigate } from 'react-router';
 
-export function ProductCard({ product, setRoute }) {
+export function ProductCard({ product }) {
   const { id, image, productName, name, price } = product;
 
   const { dataDispatch, cart, wishlist } = useData();
