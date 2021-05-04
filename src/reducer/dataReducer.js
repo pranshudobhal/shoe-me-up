@@ -34,9 +34,9 @@ export const dataReducer = (state, action) => {
         showFastDelivery: !state.showFastDelivery,
       };
     case 'ADD_TO_CART':
-      return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }], wishlist: state.wishlist.filter((wishlistItem) => wishlistItem.id !== action.payload.id) };
+      return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }] };
 
-    case 'UPDATE_QUANTITY':
+    case 'UPDATE_QUANTITY_IN_CART':
       return {
         ...state,
         cart: state.cart.map((cartItem) => {
@@ -57,7 +57,6 @@ export const dataReducer = (state, action) => {
       return {
         ...state,
         wishlist: state.wishlist.find((wishlistItem) => wishlistItem.id === action.payload.id) ? state.wishlist.filter((wishlistItem) => wishlistItem.id !== action.payload.id) : [...state.wishlist, { ...action.payload }],
-        cart: state.cart.filter((cartItem) => cartItem.id !== action.payload.id),
       };
 
     default:

@@ -30,7 +30,7 @@ export function CartCard({ cartItem }) {
             <select
               onChange={(e) =>
                 dataDispatch({
-                  type: 'UPDATE_QUANTITY',
+                  type: 'UPDATE_QUANTITY_IN_CART',
                   payload: { cartItemID: id, value: e.target.value },
                 })
               }
