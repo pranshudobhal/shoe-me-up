@@ -9,10 +9,14 @@ export function DataProvider({ children }) {
   const [state, dispatch] = useReducer(dataReducer, initialState);
 
   useEffect(() => {
-    (async function fetchProducts() {
+    (async function fetchDataFromServer() {
       try {
-        const response = await axios.get('https://shoemeup.pranshudobhal.repl.co/products');
-        dispatch({ type: 'INITIALIZE_PRODUCTS', payload: response.data.products });
+        const productsResponse = await axios.get('https://shoemeup.pranshudobhal.repl.co/products');
+        const cartResponse = await axios.get('https://shoemeup.pranshudobhal.repl.co/cart');
+        const wishlistResponse = await axios.get('https://shoemeup.pranshudobhal.repl.co/wishlist');
+        dispatch({ type: 'INITIALIZE_PRODUCTS', payload: productsResponse.data.products });
+        dispatch({ type: 'INITIALIZE_CART', payload: cartResponse.data.cart });
+        dispatch({ type: 'INITIALIZE_WISHLIST', payload: wishlistResponse.data.wishlist });
       } catch (error) {
         console.log(error);
       }

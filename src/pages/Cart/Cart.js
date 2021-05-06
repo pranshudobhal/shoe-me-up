@@ -8,15 +8,15 @@ export function Cart() {
 
   const navigate = useNavigate();
 
-  const totalPrice = cart.reduce((total, current) => total + current.price * current.quantity, 0);
+  const totalPrice = cart?.reduce((total, current) => total + current.price * current.quantity, 0);
 
   const discountOnMRP = Math.round(totalPrice * 0.2);
 
-  const cartLength = cart.length;
+  const cartLength = cart?.length;
 
   const cartLengthText = cartLength > 1 ? 'Items' : 'Item';
 
-  const totalItems = cart.reduce((total, current) => total + Number(current.quantity), 0);
+  const totalItems = cart?.reduce((total, current) => total + Number(current.quantity), 0);
 
   return (
     <div className={styles.cartContainer}>

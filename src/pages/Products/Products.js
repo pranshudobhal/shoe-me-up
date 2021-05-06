@@ -4,7 +4,7 @@ import { ProductOperations } from './components/ProductOperations';
 import styles from './Products.module.css';
 import { ProductSidebar } from './components/ProductSidebar';
 
-export function Products({ setRoute }) {
+export function Products() {
   const { products: data, showInventoryAll, showFastDelivery, sortBy, priceSlider } = useData();
 
   function getSortedData(productList, sortBy) {

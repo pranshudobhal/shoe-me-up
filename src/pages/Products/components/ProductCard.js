@@ -11,9 +11,13 @@ export function ProductCard({ product }) {
 
   const navigate = useNavigate();
 
-  const isInCart = cart.find((cartItem) => cartItem.id === id);
+  const isInCart = cart?.find((cartItem) => cartItem.id === id);
 
-  const inWishlist = wishlist.find((wishlistItem) => wishlistItem.id === id);
+  const inWishlist = wishlist?.find((wishlistItem) => wishlistItem.id === id);
+
+  const addToCart = () => {};
+
+  const addToFavourite = () => {};
 
   return (
     <div className={`card card-image ${styles.cardOverride}`}>
