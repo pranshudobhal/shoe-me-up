@@ -47,7 +47,7 @@ export function Products() {
             <ProductSidebar />
             <div className={styles.productContainer}>
               {data.length !== 0 ? (
-                filteredData.map((product) => <ProductCard product={product} />)
+                filteredData.map((product, index) => <ProductCard key={index} product={product} />)
               ) : (
                 <div className={styles.loaderContainer}>
                   <div className={styles.loader}>Loading...</div>

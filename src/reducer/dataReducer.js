@@ -14,7 +14,6 @@ export const dataReducer = (state, action) => {
       return { ...state, products: action.payload };
 
     case 'INITIALIZE_CART':
-      console.log(action.payload);
       return { ...state, cart: action.payload };
 
     case 'INITIALIZE_WISHLIST':

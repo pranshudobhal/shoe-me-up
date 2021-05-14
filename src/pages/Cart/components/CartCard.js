@@ -1,12 +1,42 @@
+import axios from 'axios';
 import { useData } from '../../../context';
 import styles from './CartCard.module.css';
 
 export function CartCard({ cartItem }) {
-  const { id, image, name, price, quantity } = cartItem;
-
+  const { _id: id, image, name, price, qty: quantity } = cartItem;
   const { dataDispatch, wishlist } = useData();
+  const isInWishlist = wishlist.find((wishlistItem) => wishlistItem._id === id);
 
-  const isInWishlist = wishlist.find((wishlistItem) => wishlistItem.id === id);
+  /**
+   * FIXME: Remove and toggleFav not working
+   */
+  const removeFromCart = async (id) => {
+    try {
+      const response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/cart/${id}`, { userID: 124 });
+      if (response.status === 200) {
+        dataDispatch({ type: 'REMOVE_FROM_CART', payload: cartItem });
+      }
+    } catch (error) {
+      console.error('Error deleting product from cart ', error);
+    }
+  };
+
+  const toggleFavourite = async (id) => {
+    try {
+      let response;
+      if (isInWishlist) {
+        response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${id}`, { userID: 124 });
+      } else {
+        response = await axios.post('https://shoemeup.pranshudobhal.repl.co/wishlist', { userID: 124, product: { _id: id } });
+      }
+
+      if (response.status === 200) {
+        dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: cartItem });
+      }
+    } catch (error) {
+      console.error('Error adding to wishlist ', error);
+    }
+  };
 
   return (
     <div className={`card card-horizontal ${styles.card}`} style={{ maxWidth: '600px' }}>
@@ -36,6 +66,7 @@ export function CartCard({ cartItem }) {
               }
               name="quantity"
               id="quantity"
+              value={quantity}
               style={{ height: 'auto' }}
             >
               <option value="1">1</option>
@@ -50,11 +81,11 @@ export function CartCard({ cartItem }) {
               {quantity}
             </select>
           </div>
-          <button className="btn btn-primary-text" onClick={() => dataDispatch({ type: 'REMOVE_FROM_CART', payload: cartItem })}>
+          <button className="btn btn-primary-text" onClick={() => removeFromCart(id)}>
             Remove
           </button>
-          <button className="btn btn-primary-text" onClick={() => dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: cartItem })}>
-            {!isInWishlist ? 'Move to Favorites' : 'Remove from Favorites'}
+          <button className="btn btn-primary-text" onClick={() => toggleFavourite(id)}>
+            {!isInWishlist ? 'Add to Favorites' : 'Remove from Favorites'}
           </button>
         </div>
         <div className={styles.cardPrice}>₹{price * quantity}</div>

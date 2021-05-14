@@ -14,11 +14,13 @@ export function DataProvider({ children }) {
         const productsResponse = await axios.get('https://shoemeup.pranshudobhal.repl.co/products');
         const cartResponse = await axios.get('https://shoemeup.pranshudobhal.repl.co/cart');
         const wishlistResponse = await axios.get('https://shoemeup.pranshudobhal.repl.co/wishlist');
+        //send data in below format
+        //{ "userID": 124,  "product": { "_id": "60929931c680c100a5d0a4fc" } }
         dispatch({ type: 'INITIALIZE_PRODUCTS', payload: productsResponse.data.products });
-        dispatch({ type: 'INITIALIZE_CART', payload: cartResponse.data.cart });
-        dispatch({ type: 'INITIALIZE_WISHLIST', payload: wishlistResponse.data.wishlist });
+        dispatch({ type: 'INITIALIZE_CART', payload: cartResponse.data.cart.products });
+        dispatch({ type: 'INITIALIZE_WISHLIST', payload: wishlistResponse.data.wishlist.products });
       } catch (error) {
-        console.log(error);
+        console.log('Error initializing data from backend!!! ' + error);
       }
     })();
   }, []);

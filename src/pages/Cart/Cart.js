@@ -5,18 +5,12 @@ import { useNavigate } from 'react-router';
 
 export function Cart() {
   const { cart } = useData();
-
   const navigate = useNavigate();
-
-  const totalPrice = cart?.reduce((total, current) => total + current.price * current.quantity, 0);
-
-  const discountOnMRP = Math.round(totalPrice * 0.2);
-
   const cartLength = cart?.length;
-
   const cartLengthText = cartLength > 1 ? 'Items' : 'Item';
-
-  const totalItems = cart?.reduce((total, current) => total + Number(current.quantity), 0);
+  const totalPrice = cart?.reduce((total, current) => total + current.price * current.qty, 0);
+  const discountOnTotalPrice = Math.round(totalPrice * 0.2);
+  const totalItems = cart?.reduce((total, current) => total + Number(current.qty), 0);
 
   return (
     <div className={styles.cartContainer}>
@@ -41,14 +35,14 @@ export function Cart() {
           </div>
           <div className={styles.container}>
             <div className={styles.cartItemContainer}>
-              {cart.map((cartItem) => {
-                return <CartCard cartItem={cartItem} />;
+              {cart.map((cartItem, index) => {
+                return <CartCard key={index} cartItem={cartItem} />;
               })}
             </div>
             <div className={styles.price}>
               <div className={styles.priceContainer}>
                 <h3>
-                  Price Details ({cart.length} {cartLengthText})
+                  Price Details ({cartLength} {cartLengthText})
                 </h3>
                 <div className={styles.priceText}>
                   <span>Total MRP</span>
@@ -56,7 +50,7 @@ export function Cart() {
                 </div>
                 <div className={styles.priceText}>
                   <span>Discount on MRP</span>
-                  <span className={styles.discount}>&#8211;₹{discountOnMRP}</span>
+                  <span className={styles.discount}>&#8211;₹{discountOnTotalPrice}</span>
                 </div>
                 <div className={styles.priceText}>
                   <span>Delivery Charges</span>
@@ -64,7 +58,7 @@ export function Cart() {
                 </div>
                 <div className={styles.priceText}>
                   <span>Total Amount</span>
-                  <span>₹{totalPrice - discountOnMRP}</span>
+                  <span>₹{totalPrice - discountOnTotalPrice}</span>
                 </div>
               </div>
               <div className={styles.checkoutButtonContainer}>

@@ -5,20 +5,16 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useNavigate } from 'react-router';
 
 export default function WishlistCard({ wishlistItem }) {
-  const { id, image, productName, name, price } = wishlistItem;
-
+  const { _id: id, image, name, price } = wishlistItem;
   const { dataDispatch, wishlist, cart } = useData();
-
-  const isInCart = cart.find((cartItem) => cartItem.id === id);
-
-  const inWishlist = wishlist.find((wishlistItem) => wishlistItem.id === id);
-
+  const isInCart = cart.find((cartItem) => cartItem._id === id);
+  const inWishlist = wishlist.find((wishlistItem) => wishlistItem._id === id);
   const navigate = useNavigate();
 
   return (
     <div className={`card card-image ${styles.cardOverride}`}>
       <div className={`${styles.cardHeader} card-header`}>
-        <img src={image} alt={productName} />
+        <img src={image} alt={name} />
         <span className={`${styles.cardHeaderSpan}`} onClick={() => dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: wishlistItem })}>
           {inWishlist ? <FavoriteIcon style={{ color: '#ff3f6c' }} /> : <FavoriteBorderIcon />}
         </span>

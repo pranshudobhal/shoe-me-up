@@ -1,6 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { Home, Cart, Products, Wishlist, Error404 } from './pages';
+// import { Home, Cart, Products, Wishlist, Error404 } from './pages';
+import { Cart, Products, Wishlist, Error404 } from './pages';
 import { Navbar } from './components';
 
 function App() {

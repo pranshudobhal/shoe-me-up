@@ -2,7 +2,6 @@ import styles from './NavbarDesktop.module.css';
 import { NavLink } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
-import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
 export function NavbarDesktop() {

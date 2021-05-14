@@ -5,11 +5,8 @@ import { useNavigate } from 'react-router';
 
 export function Wishlist() {
   const { wishlist } = useData();
-
   const wishlistLength = wishlist.length;
-
   const wishlistLengthText = wishlistLength > 1 ? 'Items' : 'Item';
-
   const navigate = useNavigate();
 
   return (
@@ -33,8 +30,8 @@ export function Wishlist() {
             </div>
           </div>
           <div className={styles.wishlistItemsContainer}>
-            {wishlist.map((wishlistItem) => {
-              return <WishlistCard wishlistItem={wishlistItem} />;
+            {wishlist.map((wishlistItem, index) => {
+              return <WishlistCard key={index} wishlistItem={wishlistItem} />;
             })}
           </div>
         </div>
