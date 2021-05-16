@@ -10,11 +10,13 @@ export function ProductCard({ product }) {
   const { dataDispatch, cart, wishlist } = useData();
   const navigate = useNavigate();
   const isInCart = cart?.find((cartItem) => cartItem._id === id);
-  const inWishlist = wishlist?.find((wishlistItem) => wishlistItem._id === id);
+  const isInWishlist = wishlist?.find((wishlistItem) => wishlistItem._id === id);
 
   const addToCart = async (id) => {
+    const userID = 124;
     try {
-      const response = await axios.post('https://shoemeup.pranshudobhal.repl.co/cart', { userID: 124, product: { _id: id } });
+      const response = await axios.post(`https://shoemeup.pranshudobhal.repl.co/cart/${userID}`, { product: { _id: id } });
+
       if (response.status === 200) {
         dataDispatch({ type: 'ADD_TO_CART', payload: product });
       }
@@ -23,9 +25,17 @@ export function ProductCard({ product }) {
     }
   };
 
-  const addToFavourite = async (id) => {
+  const toggleFavourite = async (id) => {
     try {
-      const response = await axios.post('https://shoemeup.pranshudobhal.repl.co/wishlist', { userID: 124, product: { _id: id } });
+      let response;
+      const userID = 124;
+
+      if (isInWishlist) {
+        response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${userID}/${id}`);
+      } else {
+        response = await axios.post(`https://shoemeup.pranshudobhal.repl.co/wishlist/${userID}`, { product: { _id: id } });
+      }
+
       if (response.status === 200) {
         dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: product });
       }
@@ -38,8 +48,8 @@ export function ProductCard({ product }) {
     <div className={`card card-image ${styles.cardOverride}`}>
       <div className={`${styles.cardHeader} card-header`}>
         <img src={image} alt={productName} />
-        <span className={`${styles.cardHeaderSpan}`} onClick={() => addToFavourite(id)}>
-          {inWishlist ? <FavoriteIcon style={{ color: '#ff3f6c' }} /> : <FavoriteBorderIcon />}
+        <span className={`${styles.cardHeaderSpan}`} onClick={() => toggleFavourite(id)}>
+          {isInWishlist ? <FavoriteIcon style={{ color: '#ff3f6c' }} /> : <FavoriteBorderIcon />}
         </span>
       </div>
       <div className={`card-body ${styles.cardBodyOverride}`}>

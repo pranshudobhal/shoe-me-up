@@ -39,33 +39,34 @@ export const dataReducer = (state, action) => {
         ...state,
         showFastDelivery: !state.showFastDelivery,
       };
+
     case 'ADD_TO_CART':
-      return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }] };
+      return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] };
+
+    case 'REMOVE_FROM_CART':
+      return {
+        ...state,
+        cart: state.cart.filter((cartItem) => cartItem._id !== action.payload._id),
+      };
 
     case 'UPDATE_QUANTITY_IN_CART':
       return {
         ...state,
         cart: state.cart.map((cartItem) => {
-          if (cartItem.id === action.payload.cartItemID) {
-            return { ...cartItem, quantity: action.payload.value };
+          if (cartItem._id === action.payload.cartItemID) {
+            return { ...cartItem, qty: action.payload.value };
           }
           return cartItem;
         }),
       };
 
-    case 'REMOVE_FROM_CART':
-      return {
-        ...state,
-        cart: state.cart.filter((cartItem) => cartItem.id !== action.payload.id),
-      };
-
     case 'TOGGLE_FAVOURITE':
       return {
         ...state,
-        wishlist: state.wishlist.find((wishlistItem) => wishlistItem.id === action.payload.id) ? state.wishlist.filter((wishlistItem) => wishlistItem.id !== action.payload.id) : [...state.wishlist, { ...action.payload }],
+        wishlist: state.wishlist.find((wishlistItem) => wishlistItem._id === action.payload._id) ? state.wishlist.filter((wishlistItem) => wishlistItem._id !== action.payload._id) : [...state.wishlist, { ...action.payload }],
       };
 
     default:
-      throw new Error('error in reducer');
+      throw new Error('Error in reducer');
   }
 };

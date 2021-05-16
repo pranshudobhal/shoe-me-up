@@ -7,12 +7,10 @@ export function CartCard({ cartItem }) {
   const { dataDispatch, wishlist } = useData();
   const isInWishlist = wishlist.find((wishlistItem) => wishlistItem._id === id);
 
-  /**
-   * FIXME: Remove and toggleFav not working
-   */
   const removeFromCart = async (id) => {
+    const userID = 124;
     try {
-      const response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/cart/${id}`, { userID: 124 });
+      const response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/cart/${userID}/${id}`);
       if (response.status === 200) {
         dataDispatch({ type: 'REMOVE_FROM_CART', payload: cartItem });
       }
@@ -24,10 +22,11 @@ export function CartCard({ cartItem }) {
   const toggleFavourite = async (id) => {
     try {
       let response;
+      const userID = 124;
       if (isInWishlist) {
-        response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${id}`, { userID: 124 });
+        response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${userID}/${id}`);
       } else {
-        response = await axios.post('https://shoemeup.pranshudobhal.repl.co/wishlist', { userID: 124, product: { _id: id } });
+        response = await axios.post(`https://shoemeup.pranshudobhal.repl.co/wishlist/${userID}`, { product: { _id: id } });
       }
 
       if (response.status === 200) {
@@ -35,6 +34,20 @@ export function CartCard({ cartItem }) {
       }
     } catch (error) {
       console.error('Error adding to wishlist ', error);
+    }
+  };
+
+  const updateQuantityInCart = async (e, id) => {
+    try {
+      const updatedQuantity = e.target.value;
+      const userID = 124;
+      const response = await axios.post(`https://shoemeup.pranshudobhal.repl.co/cart/${userID}/${id}`, { qty: updatedQuantity });
+
+      if (response.status === 200) {
+        dataDispatch({ type: 'UPDATE_QUANTITY_IN_CART', payload: { cartItemID: id, value: updatedQuantity } });
+      }
+    } catch (error) {
+      console.error('Error updating quantity in cart ', error);
     }
   };
 
@@ -47,28 +60,17 @@ export function CartCard({ cartItem }) {
         <div className="card-details">
           <h5 className={`${styles.cardPrice}`}>{name}</h5>
           <p className="card-text">Football Boot</p>
-          <div className="card-text">
+          <div className="card-text" style={{ maxWidth: 'fit-content' }}>
             <div className={`select ${styles.customSelect}`}></div>
-            <label htmlFor="size">Size</label>
+            {/* <label htmlFor="size">Size</label>
             <select name="size" id="size" style={{ height: 'auto' }}>
               <option value="5">5</option>
               <option value="6">6</option>
               <option value="7">7</option>
-            </select>
-            <div className={`select ${styles.customSelect1}`}></div>
+            </select> */}
+            {/* <div className={`select ${styles.customSelect1}`}></div> */}
             <label htmlFor="quantity">Quantity</label>
-            <select
-              onChange={(e) =>
-                dataDispatch({
-                  type: 'UPDATE_QUANTITY_IN_CART',
-                  payload: { cartItemID: id, value: e.target.value },
-                })
-              }
-              name="quantity"
-              id="quantity"
-              value={quantity}
-              style={{ height: 'auto' }}
-            >
+            <select onChange={(e) => updateQuantityInCart(e, id)} name="quantity" id="quantity" value={quantity} style={{ height: 'auto' }}>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -84,7 +86,7 @@ export function CartCard({ cartItem }) {
           <button className="btn btn-primary-text" onClick={() => removeFromCart(id)}>
             Remove
           </button>
-          <button className="btn btn-primary-text" onClick={() => toggleFavourite(id)}>
+          <button className="btn btn-primary-text" style={{ textAlign: 'left' }} onClick={() => toggleFavourite(id)}>
             {!isInWishlist ? 'Add to Favorites' : 'Remove from Favorites'}
           </button>
         </div>

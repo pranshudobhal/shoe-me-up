@@ -2,6 +2,10 @@
   color: var(--white);
 }
 
+.cardHeader {
+  height: 100%;
+}
+
 .cardHeaderSpan {
   cursor: pointer;
 }
