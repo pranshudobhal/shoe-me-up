@@ -10,11 +10,6 @@
   cursor: pointer;
 }
 
-/*
-* comment border-right and bottom and uncomment row gap in Products.module.css
-* for cards with no border and enough spacing
-*/
-
 .cardOverride {
   width: 100%;
   z-index: 1;
@@ -22,10 +17,6 @@
   border-radius: 0;
   border-bottom: 1px solid var(--card-border);
 }
-
-/*
-* border-right only on odd numbered cards
-*/
 
 .cardOverride:nth-of-type(2n + 1) {
   border-right: 1px solid var(--card-border);
@@ -44,7 +35,6 @@
 
 @media screen and (min-width: 768px) {
   .cardOverride {
-    /* border-right: 1px solid var(--card-border); */
     border: none;
   }
 
