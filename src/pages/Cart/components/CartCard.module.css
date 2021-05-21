@@ -5,8 +5,20 @@
   padding-top: 2rem;
 }
 
+.cardHeader {
+  cursor: pointer;
+}
+
 .cardBodyOverride {
   padding: 0;
+}
+
+.cardBodyOverride h5 {
+  cursor: pointer;
+}
+
+.cardBodyOverride p {
+  cursor: pointer;
 }
 
 .cardPrice {

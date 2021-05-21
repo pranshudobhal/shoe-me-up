@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 import { useData } from '../../../context';
 import styles from './CartCard.module.css';
 
@@ -6,6 +7,7 @@ export function CartCard({ cartItem }) {
   const { _id: id, image, name, price, qty: quantity } = cartItem;
   const { dataDispatch, wishlist } = useData();
   const isInWishlist = wishlist.find((wishlistItem) => wishlistItem._id === id);
+  const navigate = useNavigate();
 
   const removeFromCart = async (id) => {
     const userID = 124;
@@ -53,13 +55,17 @@ export function CartCard({ cartItem }) {
 
   return (
     <div className={`card card-horizontal ${styles.card}`} style={{ maxWidth: '600px' }}>
-      <div className={`card-header ${styles.cardHeader}`}>
+      <div className={`card-header ${styles.cardHeader}`} onClick={() => navigate(`/${id}`)}>
         <img className="img-responsive" src={image} alt={name} />
       </div>
       <div className={`card-body ${styles.cardBodyOverride}`}>
         <div className="card-details">
-          <h5 className={`${styles.cardPrice}`}>{name}</h5>
-          <p className="card-text">Football Boot</p>
+          <h5 className={`${styles.cardPrice}`} onClick={() => navigate(`/${id}`)}>
+            {name}
+          </h5>
+          <p className="card-text" onClick={() => navigate(`/${id}`)}>
+            Football Boot
+          </p>
           <div className="card-text" style={{ maxWidth: 'fit-content' }}>
             <div className={`select ${styles.customSelect}`}></div>
             {/* <label htmlFor="size">Size</label>

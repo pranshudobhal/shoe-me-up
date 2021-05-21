@@ -45,15 +45,25 @@ export default function WishlistCard({ wishlistItem }) {
 
   return (
     <div className={`card card-image ${styles.cardOverride}`}>
-      <div className={`${styles.cardHeader} card-header`}>
+      <div className={`${styles.cardHeader} card-header`} onClick={() => navigate(`/${id}`)}>
         <img src={image} alt={name} />
-        <span className={`${styles.cardHeaderSpan}`} onClick={() => toggleFavourite(id)}>
+        <span
+          className={`${styles.cardHeaderSpan}`}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleFavourite(id);
+          }}
+        >
           {isInWishlist ? <FavoriteIcon style={{ color: '#ff3f6c' }} /> : <FavoriteBorderIcon />}
         </span>
       </div>
       <div className={`card-body ${styles.cardBodyOverride}`}>
-        <h5 className="card-title">{name}</h5>
-        <p className="card-text">Multi-Ground Football Boot</p>
+        <h5 className="card-title" onClick={() => navigate(`/${id}`)}>
+          {name}
+        </h5>
+        <p className="card-text" onClick={() => navigate(`/${id}`)}>
+          Multi-Ground Football Boot
+        </p>
         <div className="card-price">₹ {price}</div>
 
         <button className="btn btn-primary" onClick={() => (isInCart ? navigate('/cart') : addToCart(id))}>

@@ -3,6 +3,7 @@
 }
 
 .cardHeader {
+  cursor: pointer;
   height: 100%;
 }
 
@@ -24,6 +25,14 @@
 
 .cardBodyOverride {
   flex-grow: 1;
+}
+
+.cardBodyOverride h5 {
+  cursor: pointer;
+}
+
+.cardBodyOverride p {
+  cursor: pointer;
 }
 
 .button {
