@@ -1,10 +1,16 @@
 import styles from './NavbarDesktop.module.css';
-import { NavLink } from 'react-router-dom';
-import SearchIcon from '@material-ui/icons/Search';
+import { NavLink, useNavigate } from 'react-router-dom';
+// import SearchIcon from '@material-ui/icons/Search';
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { useAuth } from '../../../context';
 
 export function NavbarDesktop() {
+  const { token, logoutUser } = useAuth();
+  const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <div className={styles.navbarContainer}>
@@ -14,9 +20,9 @@ export function NavbarDesktop() {
           </NavLink>
         </div>
         <div className={styles.actions}>
-          <span>
+          {/* <span>
             <SearchIcon style={{ fontSize: 27 }} />
-          </span>
+          </span> */}
           <NavLink to="/wishlist" className={styles.navlink}>
             <span>
               <FavoriteBorderOutlinedIcon style={{ fontSize: 27 }} />
@@ -27,6 +33,7 @@ export function NavbarDesktop() {
               <LocalMallOutlinedIcon style={{ fontSize: 27 }} />
             </span>
           </NavLink>
+          <span>{token ? <ExitToAppIcon onClick={() => logoutUser()} style={{ fontSize: 27 }} /> : <AccountCircleIcon onClick={() => navigate('/login')} style={{ fontSize: 27 }} />}</span>
         </div>
       </div>
     </div>

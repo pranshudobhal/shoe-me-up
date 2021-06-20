@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router';
-import { useData } from '../../context/dataContext';
+import { useAuth, useData } from '../../context/';
 import styles from './ProductPage.module.css';
 import axios from 'axios';
 import { Error404 } from '../Error/Error404';
@@ -9,6 +9,7 @@ export function ProductPage() {
   const { products, cart, wishlist, dataDispatch } = useData();
   const navigate = useNavigate();
   const product = products?.find((product) => product._id === productID);
+  const { token } = useAuth();
 
   if (!product) {
     return <Error404 />;
@@ -19,9 +20,9 @@ export function ProductPage() {
   const isInWishlist = wishlist?.find((wishlistItem) => wishlistItem._id === id);
 
   const addToCart = async (id) => {
-    const userID = 124;
     try {
-      const response = await axios.post(`https://shoemeup.pranshudobhal.repl.co/cart/${userID}`, { product: { _id: id } });
+      // const response = await axios.post('http://localhost:3000/cart', { product: { _id: id } });
+      const response = await axios.post('https://shoemeup.pranshudobhal.repl.co/cart', { product: { _id: id } });
 
       if (response.status === 200) {
         dataDispatch({ type: 'ADD_TO_CART', payload: product });
@@ -34,12 +35,13 @@ export function ProductPage() {
   const toggleFavourite = async (id) => {
     try {
       let response;
-      const userID = 124;
 
       if (isInWishlist) {
-        response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${userID}/${id}`);
+        // response = await axios.delete(`http://localhost:3000/wishlist/${id}`);
+        response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${id}`);
       } else {
-        response = await axios.post(`https://shoemeup.pranshudobhal.repl.co/wishlist/${userID}`, { product: { _id: id } });
+        // response = await axios.post('http://localhost:3000/wishlist', { product: { _id: id } });
+        response = await axios.post('https://shoemeup.pranshudobhal.repl.co/wishlist', { product: { _id: id } });
       }
 
       if (response.status === 200) {
@@ -70,10 +72,10 @@ export function ProductPage() {
             <span>inclusive of all taxes</span>
           </div>
           <div className={styles.action}>
-            <button className="btn btn-primary" onClick={() => (isInCart ? navigate('/cart') : addToCart(id))}>
+            <button className="btn btn-primary" onClick={() => (token ? (isInCart ? navigate('/cart') : addToCart(id)) : navigate('/login'))}>
               {isInCart ? 'Go to Cart' : 'Add to Cart'}
             </button>
-            <button className="btn btn-primary-outline" onClick={() => toggleFavourite(id)}>
+            <button className="btn btn-primary-outline" onClick={() => (token ? toggleFavourite(id) : navigate('/login'))}>
               {isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
             </button>
           </div>

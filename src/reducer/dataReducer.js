@@ -66,6 +66,17 @@ export const dataReducer = (state, action) => {
         wishlist: state.wishlist.find((wishlistItem) => wishlistItem._id === action.payload._id) ? state.wishlist.filter((wishlistItem) => wishlistItem._id !== action.payload._id) : [...state.wishlist, { ...action.payload }],
       };
 
+    case 'RESET_STATE':
+      return {
+        ...state,
+        sortBy: null,
+        showInventoryAll: true,
+        showFastDelivery: false,
+        priceSlider: 1000,
+        cart: [],
+        wishlist: [],
+      };
+
     default:
       throw new Error('Error in reducer');
   }

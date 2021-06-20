@@ -13,9 +13,9 @@ export default function WishlistCard({ wishlistItem }) {
   const navigate = useNavigate();
 
   const addToCart = async (id) => {
-    const userID = 124;
     try {
-      const response = await axios.post(`https://shoemeup.pranshudobhal.repl.co/cart/${userID}`, { product: { _id: id } });
+      // const response = await axios.post('http://localhost:3000/cart', { product: { _id: id } });
+      const response = await axios.post('https://shoemeup.pranshudobhal.repl.co/cart', { product: { _id: id } });
       if (response.status === 200) {
         dataDispatch({ type: 'ADD_TO_CART', payload: wishlistItem });
       }
@@ -27,12 +27,13 @@ export default function WishlistCard({ wishlistItem }) {
   const toggleFavourite = async (id) => {
     try {
       let response;
-      const userID = 124;
 
       if (isInWishlist) {
-        response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${userID}/${id}`);
+        // response = await axios.delete(`http://localhost:3000/wishlist/${id}`);
+        response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${id}`);
       } else {
-        response = await axios.post(`https://shoemeup.pranshudobhal.repl.co/wishlist/${userID}`, { product: { _id: id } });
+        // response = await axios.post('http://localhost:3000/wishlist', { product: { _id: id } });
+        response = await axios.post('https://shoemeup.pranshudobhal.repl.co/wishlist', { product: { _id: id } });
       }
 
       if (response.status === 200) {

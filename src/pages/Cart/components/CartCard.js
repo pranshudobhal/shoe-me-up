@@ -10,9 +10,10 @@ export function CartCard({ cartItem }) {
   const navigate = useNavigate();
 
   const removeFromCart = async (id) => {
-    const userID = 124;
     try {
-      const response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/cart/${userID}/${id}`);
+      // const response = await axios.delete(`http://localhost:3000/cart/${id}`);
+      const response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/cart/${id}`);
+
       if (response.status === 200) {
         dataDispatch({ type: 'REMOVE_FROM_CART', payload: cartItem });
       }
@@ -24,11 +25,12 @@ export function CartCard({ cartItem }) {
   const toggleFavourite = async (id) => {
     try {
       let response;
-      const userID = 124;
       if (isInWishlist) {
-        response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${userID}/${id}`);
+        // response = await axios.delete(`http://localhost:3000/wishlist/${id}`);
+        response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${id}`);
       } else {
-        response = await axios.post(`https://shoemeup.pranshudobhal.repl.co/wishlist/${userID}`, { product: { _id: id } });
+        // response = await axios.post('http://localhost:3000/wishlist', { product: { _id: id } });
+        response = await axios.post('https://shoemeup.pranshudobhal.repl.co/wishlist', { product: { _id: id } });
       }
 
       if (response.status === 200) {
@@ -42,8 +44,8 @@ export function CartCard({ cartItem }) {
   const updateQuantityInCart = async (e, id) => {
     try {
       const updatedQuantity = e.target.value;
-      const userID = 124;
-      const response = await axios.post(`https://shoemeup.pranshudobhal.repl.co/cart/${userID}/${id}`, { qty: updatedQuantity });
+      // const response = await axios.post(`http://localhost:3000/cart/${id}`, { qty: updatedQuantity });
+      const response = await axios.post(`https://shoemeup.pranshudobhal.repl.co/cart/${id}`, { qty: updatedQuantity });
 
       if (response.status === 200) {
         dataDispatch({ type: 'UPDATE_QUANTITY_IN_CART', payload: { cartItemID: id, value: updatedQuantity } });
