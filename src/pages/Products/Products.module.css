@@ -41,6 +41,11 @@
     row-gap: 2rem;
     width: 75%;
   }
+
+  .emptyProducts {
+    width: 75%;
+    margin: 0;
+  }
 }
 
 .loaderContainer {

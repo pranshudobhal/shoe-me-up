@@ -37,10 +37,13 @@ export function Products() {
     <>
       <div>
         <ProductOperations />
-        {filteredData.length === 0 && priceSlider === 0 ? (
-          <div className={styles.emptyProducts}>
-            <h3>No Products available at this price</h3>
-            <p>Please broaden your price range</p>
+        {filteredData.length === 0 && Number(priceSlider) === 0 ? (
+          <div className={styles.container}>
+            <ProductSidebar />
+            <div className={styles.emptyProducts}>
+              <h3>No Products available at this price</h3>
+              <p>Please broaden your price range</p>
+            </div>
           </div>
         ) : (
           <div className={styles.container}>
