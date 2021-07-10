@@ -14,7 +14,6 @@ export default function WishlistCard({ wishlistItem }) {
 
   const addToCart = async (id) => {
     try {
-      // const response = await axios.post('http://localhost:3000/cart', { product: { _id: id } });
       const response = await axios.post('https://shoemeup.pranshudobhal.repl.co/cart', { product: { _id: id } });
       if (response.status === 200) {
         dataDispatch({ type: 'ADD_TO_CART', payload: wishlistItem });
@@ -29,10 +28,8 @@ export default function WishlistCard({ wishlistItem }) {
       let response;
 
       if (isInWishlist) {
-        // response = await axios.delete(`http://localhost:3000/wishlist/${id}`);
         response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${id}`);
       } else {
-        // response = await axios.post('http://localhost:3000/wishlist', { product: { _id: id } });
         response = await axios.post('https://shoemeup.pranshudobhal.repl.co/wishlist', { product: { _id: id } });
       }
 

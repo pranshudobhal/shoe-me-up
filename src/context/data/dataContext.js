@@ -14,13 +14,10 @@ export function DataProvider({ children }) {
   useEffect(() => {
     (async function fetchDataFromServer() {
       try {
-        // const productsResponse = await axios.get('http://localhost:3000/products');
         const productsResponse = await axios.get('https://shoemeup.pranshudobhal.repl.co/products');
         dispatch({ type: 'INITIALIZE_PRODUCTS', payload: productsResponse.data.products });
 
         if (token) {
-          // const cartResponse = await axios.get('http://localhost:3000/cart');
-          // const wishlistResponse = await axios.get('http://localhost:3000/wishlist');
           const cartResponse = await axios.get('https://shoemeup.pranshudobhal.repl.co/cart');
           const wishlistResponse = await axios.get('https://shoemeup.pranshudobhal.repl.co/wishlist');
           dispatch({ type: 'INITIALIZE_CART', payload: cartResponse.data.cart.products });

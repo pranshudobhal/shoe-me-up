@@ -11,7 +11,6 @@ export function CartCard({ cartItem }) {
 
   const removeFromCart = async (id) => {
     try {
-      // const response = await axios.delete(`http://localhost:3000/cart/${id}`);
       const response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/cart/${id}`);
 
       if (response.status === 200) {
@@ -26,10 +25,8 @@ export function CartCard({ cartItem }) {
     try {
       let response;
       if (isInWishlist) {
-        // response = await axios.delete(`http://localhost:3000/wishlist/${id}`);
         response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${id}`);
       } else {
-        // response = await axios.post('http://localhost:3000/wishlist', { product: { _id: id } });
         response = await axios.post('https://shoemeup.pranshudobhal.repl.co/wishlist', { product: { _id: id } });
       }
 
@@ -44,7 +41,6 @@ export function CartCard({ cartItem }) {
   const updateQuantityInCart = async (e, id) => {
     try {
       const updatedQuantity = e.target.value;
-      // const response = await axios.post(`http://localhost:3000/cart/${id}`, { qty: updatedQuantity });
       const response = await axios.post(`https://shoemeup.pranshudobhal.repl.co/cart/${id}`, { qty: updatedQuantity });
 
       if (response.status === 200) {

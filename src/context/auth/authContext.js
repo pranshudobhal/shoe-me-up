@@ -18,11 +18,6 @@ const loginService = (email, password) => {
     email: email,
     password: password,
   });
-
-  //   return axios.post('http://localhost:3000/login', {
-  //     email: email,
-  //     password: password,
-  //   });
 };
 
 const signUpService = (firstName, lastName, email, password) => {
@@ -32,19 +27,7 @@ const signUpService = (firstName, lastName, email, password) => {
     email: email,
     password: password,
   });
-
-  //     return axios.post('http://localhost:3000/signup', {
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     email: email,
-  //     password: password,
-  //   });
 };
-
-/**
- * TODO:
- * - use token for getting other data
- */
 
 export const AuthProvider = ({ children }) => {
   const localStorageToken = JSON.parse(localStorage?.getItem('login'));
@@ -72,10 +55,6 @@ export const AuthProvider = ({ children }) => {
       const {
         data: { user },
       } = await axios.get('https://shoemeup.pranshudobhal.repl.co/user');
-
-      //   const {
-      //     data: { user },
-      //   } = await axios.get('http://localhost:3000/user');
 
       setUser(user);
     } catch (error) {
