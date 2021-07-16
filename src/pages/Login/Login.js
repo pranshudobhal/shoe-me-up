@@ -24,7 +24,7 @@ export function Login() {
 
   useEffect(() => {
     token && navigate('/');
-  }, []);
+  }, [token, navigate]);
 
   return (
     <>

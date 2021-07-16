@@ -25,7 +25,7 @@ export function SignUp() {
 
   useEffect(() => {
     token && navigate('/');
-  }, []);
+  }, [token, navigate]);
 
   return (
     <>
@@ -46,7 +46,7 @@ export function SignUp() {
             <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(() => e.target.value)} required />
             <br />
             <br />
-            <button onClick={signUpHandler}>SignUp</button>
+            <button onClick={signUpHandler}>Signup</button>
           </form>
         </div>
       </div>

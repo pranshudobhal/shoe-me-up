@@ -1,10 +1,7 @@
 import styles from './NavbarDesktop.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
-// import SearchIcon from '@material-ui/icons/Search';
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useAuth } from '../../../context';
 
 export function NavbarDesktop() {
@@ -20,9 +17,6 @@ export function NavbarDesktop() {
           </NavLink>
         </div>
         <div className={styles.actions}>
-          {/* <span>
-            <SearchIcon style={{ fontSize: 27 }} />
-          </span> */}
           <NavLink to="/wishlist" className={styles.navlink}>
             <span>
               <FavoriteBorderOutlinedIcon style={{ fontSize: 27 }} />
@@ -33,7 +27,17 @@ export function NavbarDesktop() {
               <LocalMallOutlinedIcon style={{ fontSize: 27 }} />
             </span>
           </NavLink>
-          <span>{token ? <ExitToAppIcon onClick={() => logoutUser()} style={{ fontSize: 27 }} /> : <AccountCircleIcon onClick={() => navigate('/login')} style={{ fontSize: 27 }} />}</span>
+          <span>
+            {token ? (
+              <button className={styles.authButton} onClick={() => logoutUser()}>
+                Logout
+              </button>
+            ) : (
+              <button className={styles.authButton} onClick={() => navigate('/login')}>
+                Login
+              </button>
+            )}
+          </span>
         </div>
       </div>
     </div>

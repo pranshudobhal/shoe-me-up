@@ -34,6 +34,18 @@
   cursor: pointer;
 }
 
+.authButton {
+  height: 2.25rem;
+  width: 3.5rem;
+  border-radius: 5px;
+  outline: none;
+  border-width: 0;
+  font-size: 0.85rem;
+  background-color: var(--primary-color);
+  color: var(--white);
+  cursor: pointer;
+}
+
 @media screen and (min-width: 1024px) {
   .container {
     display: none;

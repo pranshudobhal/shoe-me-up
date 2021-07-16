@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     token && getUserData();
-  }, []);
+  }, [token]);
 
   axios.interceptors.response.use(
     (response) => response,

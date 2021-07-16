@@ -33,10 +33,24 @@
   .actions {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .actions span {
     margin: 0 0.4rem;
+    cursor: pointer;
+  }
+
+  .authButton {
+    height: 2.25rem;
+    width: 5rem;
+    border-radius: 5px;
+    outline: none;
+    border-width: 0;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    background-color: var(--primary-color);
+    color: var(--white);
     cursor: pointer;
   }
 }
