@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { createContext, useContext } from 'react';
 import { useNavigate } from 'react-router';
+import { loginService, signUpService } from '../../services';
+import { API_URL } from '../../utils';
 
 const AuthContext = createContext();
 
@@ -11,22 +13,6 @@ const setupAuthHeaderForServiceCalls = (token) => {
     return (axios.defaults.headers.common['Authorization'] = token);
   }
   delete axios.defaults.headers.common['Authorization'];
-};
-
-const loginService = (email, password) => {
-  return axios.post('https://shoemeup.pranshudobhal.repl.co/login', {
-    email: email,
-    password: password,
-  });
-};
-
-const signUpService = (firstName, lastName, email, password) => {
-  return axios.post('https://shoemeup.pranshudobhal.repl.co/signup', {
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    password: password,
-  });
 };
 
 export const AuthProvider = ({ children }) => {
@@ -54,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const {
         data: { user },
-      } = await axios.get('https://shoemeup.pranshudobhal.repl.co/user');
+      } = await axios.get(`${API_URL}/user`);
 
       setUser(user);
     } catch (error) {

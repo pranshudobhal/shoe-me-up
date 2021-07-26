@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { dataReducer, initialState } from '../../reducer/dataReducer';
 import { useAuth } from '../auth/authContext';
+import { API_URL } from '../../utils';
 
 const DataContext = createContext();
 
@@ -14,12 +15,12 @@ export function DataProvider({ children }) {
   useEffect(() => {
     (async function fetchDataFromServer() {
       try {
-        const productsResponse = await axios.get('https://shoemeup.pranshudobhal.repl.co/products');
+        const productsResponse = await axios.get(`${API_URL}/products`);
         dispatch({ type: 'INITIALIZE_PRODUCTS', payload: productsResponse.data.products });
 
         if (token) {
-          const cartResponse = await axios.get('https://shoemeup.pranshudobhal.repl.co/cart');
-          const wishlistResponse = await axios.get('https://shoemeup.pranshudobhal.repl.co/wishlist');
+          const cartResponse = await axios.get(`${API_URL}/cart`);
+          const wishlistResponse = await axios.get(`${API_URL}/wishlist`);
           dispatch({ type: 'INITIALIZE_CART', payload: cartResponse.data.cart.products });
           dispatch({ type: 'INITIALIZE_WISHLIST', payload: wishlistResponse.data.wishlist.products });
         } else {
