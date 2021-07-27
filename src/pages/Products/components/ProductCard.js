@@ -3,7 +3,7 @@ import styles from './ProductCard.module.css';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { addToCart, toggleFavourite } from '../../../services';
 
 export function ProductCard({ product }) {
   const { _id: id, image, productName, name, price } = product;
@@ -13,36 +13,6 @@ export function ProductCard({ product }) {
   const isInWishlist = wishlist?.find((wishlistItem) => wishlistItem._id === id);
   const { token } = useAuth();
 
-  const addToCart = async (id) => {
-    try {
-      const response = await axios.post('https://shoemeup.pranshudobhal.repl.co/cart', { product: { _id: id } });
-
-      if (response.status === 200) {
-        dataDispatch({ type: 'ADD_TO_CART', payload: product });
-      }
-    } catch (error) {
-      console.error('Error adding to cart ', error);
-    }
-  };
-
-  const toggleFavourite = async (id) => {
-    try {
-      let response;
-
-      if (isInWishlist) {
-        response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${id}`);
-      } else {
-        response = await axios.post('https://shoemeup.pranshudobhal.repl.co/wishlist', { product: { _id: id } });
-      }
-
-      if (response.status === 200) {
-        dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: product });
-      }
-    } catch (error) {
-      console.error('Error adding to wishlist ', error);
-    }
-  };
-
   return (
     <div className={`card card-image ${styles.cardOverride}`}>
       <div className={`${styles.cardHeader} card-header`} onClick={() => navigate(`/${id}`)}>
@@ -51,7 +21,7 @@ export function ProductCard({ product }) {
           className={`${styles.cardHeaderSpan}`}
           onClick={(e) => {
             e.stopPropagation();
-            token ? toggleFavourite(id) : navigate('/login');
+            token ? toggleFavourite(id, isInWishlist, dataDispatch, product) : navigate('/login');
           }}
         >
           {isInWishlist ? <FavoriteIcon style={{ color: '#ff3f6c' }} /> : <FavoriteBorderIcon />}
@@ -66,7 +36,7 @@ export function ProductCard({ product }) {
         </p>
         <div className="card-price">₹ {price}</div>
 
-        <button className="btn btn-primary" onClick={() => (token ? (isInCart ? navigate('/cart') : addToCart(id)) : navigate('/login'))}>
+        <button className="btn btn-primary" onClick={() => (token ? (isInCart ? navigate('/cart') : addToCart(id, dataDispatch, product)) : navigate('/login'))}>
           {isInCart ? 'Go to Cart' : 'Add to Cart'}
         </button>
       </div>

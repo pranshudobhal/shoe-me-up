@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from 'react-router';
 import { useAuth, useData } from '../../context/';
 import styles from './ProductPage.module.css';
-import axios from 'axios';
 import { Error404 } from '../Error/Error404';
+import { addToCart, toggleFavourite } from '../../services';
 
 export function ProductPage() {
   const { productID } = useParams();
@@ -18,36 +18,6 @@ export function ProductPage() {
   const { _id: id, name, image, price } = product;
   const isInCart = cart?.find((cartItem) => cartItem._id === id);
   const isInWishlist = wishlist?.find((wishlistItem) => wishlistItem._id === id);
-
-  const addToCart = async (id) => {
-    try {
-      const response = await axios.post('https://shoemeup.pranshudobhal.repl.co/cart', { product: { _id: id } });
-
-      if (response.status === 200) {
-        dataDispatch({ type: 'ADD_TO_CART', payload: product });
-      }
-    } catch (error) {
-      console.error('Error adding to cart ', error);
-    }
-  };
-
-  const toggleFavourite = async (id) => {
-    try {
-      let response;
-
-      if (isInWishlist) {
-        response = await axios.delete(`https://shoemeup.pranshudobhal.repl.co/wishlist/${id}`);
-      } else {
-        response = await axios.post('https://shoemeup.pranshudobhal.repl.co/wishlist', { product: { _id: id } });
-      }
-
-      if (response.status === 200) {
-        dataDispatch({ type: 'TOGGLE_FAVOURITE', payload: product });
-      }
-    } catch (error) {
-      console.error('Error adding to wishlist ', error);
-    }
-  };
 
   return (
     <div className={styles.productPageContainer}>
@@ -69,10 +39,10 @@ export function ProductPage() {
             <span>inclusive of all taxes</span>
           </div>
           <div className={styles.action}>
-            <button className="btn btn-primary" onClick={() => (token ? (isInCart ? navigate('/cart') : addToCart(id)) : navigate('/login'))}>
+            <button className="btn btn-primary" onClick={() => (token ? (isInCart ? navigate('/cart') : addToCart(id, dataDispatch, product)) : navigate('/login'))}>
               {isInCart ? 'Go to Cart' : 'Add to Cart'}
             </button>
-            <button className="btn btn-primary-outline" onClick={() => (token ? toggleFavourite(id) : navigate('/login'))}>
+            <button className="btn btn-primary-outline" onClick={() => (token ? toggleFavourite(id, isInWishlist, dataDispatch, product) : navigate('/login'))}>
               {isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
             </button>
           </div>

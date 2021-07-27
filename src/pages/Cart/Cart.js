@@ -1,16 +1,19 @@
-import { useData } from '../../context';
+import { useAuth, useData } from '../../context';
 import { CartCard } from './components/CartCard';
 import styles from './Cart.module.css';
 import { useNavigate } from 'react-router';
+import { placeOrder } from '../../services';
 
 export function Cart() {
   const { cart } = useData();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const cartLength = cart?.length;
   const cartLengthText = cartLength > 1 ? 'Items' : 'Item';
   const totalPrice = cart?.reduce((total, current) => total + current.price * current.qty, 0);
   const discountOnTotalPrice = Math.round(totalPrice * 0.2);
   const totalItems = cart?.reduce((total, current) => total + Number(current.qty), 0);
+  const totalPriceAfterDiscount = totalPrice - discountOnTotalPrice;
 
   return (
     <div className={styles.cartContainer}>
@@ -30,7 +33,7 @@ export function Cart() {
               <span>
                 {totalItems} {cartLengthText}{' '}
               </span>
-              <span>| ₹{totalPrice}</span>
+              <span>| ₹{totalPriceAfterDiscount}</span>
             </div>
           </div>
           <div className={styles.container}>
@@ -58,11 +61,13 @@ export function Cart() {
                 </div>
                 <div className={styles.priceText}>
                   <span>Total Amount</span>
-                  <span>₹{totalPrice - discountOnTotalPrice}</span>
+                  <span>₹{totalPriceAfterDiscount}</span>
                 </div>
               </div>
               <div className={styles.checkoutButtonContainer}>
-                <button className={styles.checkoutButton}>PLACE ORDER</button>
+                <button className={styles.checkoutButton} onClick={() => placeOrder(user, totalPriceAfterDiscount)}>
+                  PLACE ORDER
+                </button>
               </div>
             </div>
           </div>
