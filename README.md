@@ -21,6 +21,7 @@ $ npm install
 - Mongoose
 - ExpressJS
 - Authentication using JWT and password hashing using Bcrypt and salt
+- Razorpay payment gateway
 
 ## **Functionalities**
 
@@ -29,6 +30,7 @@ $ npm install
 - Cart
 - Wishlist
 - Filter and sort products
+- Payment gateway integration
 - Authentication:
   - User Signup
   - User Login
