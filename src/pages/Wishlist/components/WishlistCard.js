@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 import { addToCart, toggleFavourite } from '../../../services';
 
 export default function WishlistCard({ wishlistItem }) {
-  const { _id: id, image, name, price } = wishlistItem;
+  const { _id: id, image, description, name, price } = wishlistItem;
   const { dataDispatch, wishlist, cart } = useData();
   const isInCart = cart.find((cartItem) => cartItem._id === id);
   const isInWishlist = wishlist.find((wishlistItem) => wishlistItem._id === id);
@@ -31,7 +31,7 @@ export default function WishlistCard({ wishlistItem }) {
           {name}
         </h5>
         <p className="card-text" onClick={() => navigate(`/${id}`)}>
-          Multi-Ground Football Boot
+          {description}
         </p>
         <div className="card-price">₹ {price}</div>
 

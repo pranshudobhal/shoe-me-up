@@ -81,8 +81,8 @@ export function ProductSidebar() {
             name="PRICE_RANGE"
             type="range"
             min="0"
-            max="1000"
-            step="100"
+            max="25000"
+            step="1000"
             value={priceSlider}
             onChange={(e) =>
               dataDispatch({

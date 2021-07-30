@@ -2,7 +2,7 @@ export const initialState = {
   sortBy: null,
   showInventoryAll: true,
   showFastDelivery: false,
-  priceSlider: 1000,
+  priceSlider: 25000,
   cart: [],
   wishlist: [],
   products: [],
@@ -72,7 +72,7 @@ export const dataReducer = (state, action) => {
         sortBy: null,
         showInventoryAll: true,
         showFastDelivery: false,
-        priceSlider: 1000,
+        priceSlider: 25000,
         cart: [],
         wishlist: [],
       };

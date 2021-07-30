@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 import { addToCart, toggleFavourite } from '../../../services';
 
 export function ProductCard({ product }) {
-  const { _id: id, image, productName, name, price } = product;
+  const { _id: id, image, description, name, price } = product;
   const { dataDispatch, cart, wishlist } = useData();
   const navigate = useNavigate();
   const isInCart = cart?.find((cartItem) => cartItem._id === id);
@@ -16,7 +16,7 @@ export function ProductCard({ product }) {
   return (
     <div className={`card card-image ${styles.cardOverride}`}>
       <div className={`${styles.cardHeader} card-header`} onClick={() => navigate(`/${id}`)}>
-        <img src={image} alt={productName} />
+        <img src={image} alt={name} />
         <span
           className={`${styles.cardHeaderSpan}`}
           onClick={(e) => {
@@ -32,7 +32,7 @@ export function ProductCard({ product }) {
           {name}
         </h5>
         <p className="card-text" onClick={() => navigate(`/${id}`)}>
-          Multi-Ground Football Boot
+          {description}
         </p>
         <div className="card-price">₹ {price}</div>
 

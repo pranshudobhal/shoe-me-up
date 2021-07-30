@@ -4,7 +4,7 @@ import { removeFromCart, updateQuantityInCart, toggleFavourite } from '../../../
 import styles from './CartCard.module.css';
 
 export function CartCard({ cartItem }) {
-  const { _id: id, image, name, price, qty: quantity } = cartItem;
+  const { _id: id, image, name, description, price, qty: quantity } = cartItem;
   const { dataDispatch, wishlist } = useData();
   const isInWishlist = wishlist.find((wishlistItem) => wishlistItem._id === id);
   const navigate = useNavigate();
@@ -20,17 +20,10 @@ export function CartCard({ cartItem }) {
             {name}
           </h5>
           <p className="card-text" onClick={() => navigate(`/${id}`)}>
-            Football Boot
+            {description}
           </p>
           <div className="card-text" style={{ maxWidth: 'fit-content' }}>
             <div className={`select ${styles.customSelect}`}></div>
-            {/* <label htmlFor="size">Size</label>
-            <select name="size" id="size" style={{ height: 'auto' }}>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-            </select> */}
-            {/* <div className={`select ${styles.customSelect1}`}></div> */}
             <label htmlFor="quantity">Quantity</label>
             <select onChange={(e) => updateQuantityInCart(e, id, dataDispatch)} name="quantity" id="quantity" value={quantity} style={{ height: 'auto' }}>
               <option value="1">1</option>

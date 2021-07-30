@@ -15,7 +15,7 @@ export function ProductPage() {
     return <Error404 />;
   }
 
-  const { _id: id, name, image, price } = product;
+  const { _id: id, name, description, image, price } = product;
   const isInCart = cart?.find((cartItem) => cartItem._id === id);
   const isInWishlist = wishlist?.find((wishlistItem) => wishlistItem._id === id);
 
@@ -30,7 +30,7 @@ export function ProductPage() {
             <h2>{name}</h2>
           </div>
           <div className={styles.subHeading}>
-            <h3>Multi-Ground Football Boot</h3>
+            <h3>{description}</h3>
           </div>
         </div>
         <div className={styles.priceActionContainer}>
