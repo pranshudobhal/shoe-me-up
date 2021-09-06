@@ -3,7 +3,7 @@ import styles from './ProductCard.module.css';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useNavigate } from 'react-router';
-import { addToCart, toggleFavourite } from '../../../services';
+import { addToCart, addToLocalStorage, toggleFavourite } from '../../../services';
 
 export function ProductCard({ product }) {
   const { _id: id, image, description, name, price } = product;
@@ -12,6 +12,10 @@ export function ProductCard({ product }) {
   const isInCart = cart?.find((cartItem) => cartItem._id === id);
   const isInWishlist = wishlist?.find((wishlistItem) => wishlistItem._id === id);
   const { token } = useAuth();
+
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || [];
+
+  const isInLocalStorage = cartFromLocalStorage.find((cartItem) => cartItem._id === id);
 
   return (
     <div className={`card card-image ${styles.cardOverride}`}>
@@ -36,7 +40,7 @@ export function ProductCard({ product }) {
         </p>
         <div className="card-price">₹ {price}</div>
 
-        <button className="btn btn-primary" onClick={() => (token ? (isInCart ? navigate('/cart') : addToCart(id, dataDispatch, product)) : navigate('/login'))}>
+        <button className="btn btn-primary" onClick={() => (token ? (isInCart ? navigate('/cart') : addToCart(id, dataDispatch, product)) : isInLocalStorage ? navigate('/cart') : addToLocalStorage(id, dataDispatch, product))}>
           {isInCart ? 'Go to Cart' : 'Add to Cart'}
         </button>
       </div>

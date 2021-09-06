@@ -1,0 +1,6 @@
+//1.  Remove the loggedin state on clicking add to cart -- DONE
+//2.  When the user clicks on add to cart, the product should get added to the local storage and to the state -- DONE
+//3.  When the user removes from cart, the product should get removed from the local storage and from the state -- DONE
+//4.  cart in localstorage woudl be shown in cart page before login -- DONE
+//5.  when the user logs in, check if localstroage cart is empty, if its not empty, then concat the products in localstorage cart to the backend cart an fire an api to sync the data
+//6.  clear the localstorage

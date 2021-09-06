@@ -41,3 +41,29 @@ export const updateQuantityInCart = async (e, id, dataDispatch) => {
 export const clearCart = () => {
   return axios.delete(`${API_URL}/cart`);
 };
+
+export const addToLocalStorage = (id, dataDispatch, product) => {
+  //add or remove to local storage and state
+
+  //add product to cart
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || [];
+
+  cartFromLocalStorage.push({ ...product, qty: 1 });
+
+  localStorage.setItem('cart', JSON.stringify(cartFromLocalStorage));
+
+  //add product to state
+  dataDispatch({ type: 'ADD_TO_CART', payload: product });
+};
+
+export const removeFromLocalStorage = (dataDispatch, product) => {
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || [];
+
+  if (cartFromLocalStorage.length > 0) {
+    const newCartFromLocalStorage = cartFromLocalStorage.filter((cartItem) => cartItem._id !== product._id);
+
+    localStorage.setItem('cart', JSON.stringify(newCartFromLocalStorage));
+
+    dataDispatch({ type: 'REMOVE_FROM_CART', payload: product });
+  }
+};

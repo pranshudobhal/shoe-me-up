@@ -11,6 +11,7 @@ export function DataProvider({ children }) {
   const [state, dispatch] = useReducer(dataReducer, initialState);
 
   const { token } = useAuth();
+  console.log({ state });
 
   useEffect(() => {
     (async function fetchDataFromServer() {
@@ -19,12 +20,24 @@ export function DataProvider({ children }) {
         dispatch({ type: 'INITIALIZE_PRODUCTS', payload: productsResponse.data.products });
 
         if (token) {
+          const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || [];
           const cartResponse = await axios.get(`${API_URL}/cart`);
           const wishlistResponse = await axios.get(`${API_URL}/wishlist`);
-          dispatch({ type: 'INITIALIZE_CART', payload: cartResponse.data.cart.products });
+
+          const newCart = [...cartResponse.data.cart.products, ...cartFromLocalStorage];
+
+          dispatch({ type: 'INITIALIZE_CART', payload: newCart });
           dispatch({ type: 'INITIALIZE_WISHLIST', payload: wishlistResponse.data.wishlist.products });
+
+          cartFromLocalStorage.forEach(async (cartItem) => await axios.post(`${API_URL}/cart`, { product: { _id: cartItem._id } }));
+
+          localStorage.removeItem('cart');
         } else {
           dispatch({ type: 'RESET_STATE' });
+
+          const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || [];
+
+          dispatch({ type: 'INITIALIZE_CART', payload: cartFromLocalStorage });
         }
       } catch (error) {
         console.error('Error initializing data from backend!!! ' + error);

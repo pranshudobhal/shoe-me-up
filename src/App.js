@@ -14,7 +14,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/products" element={<Products />} />
         <Route path="/:productID" element={<ProductPage />} />
-        <PrivateRoute path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart />} />
         <PrivateRoute path="/wishlist" element={<Wishlist />} />
         <Route path="*" element={<Error404 />} />
       </Routes>

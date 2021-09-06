@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
-import { useData } from '../../../context';
-import { removeFromCart, updateQuantityInCart, toggleFavourite } from '../../../services';
+import { useAuth, useData } from '../../../context';
+import { removeFromCart, updateQuantityInCart, toggleFavourite, removeFromLocalStorage } from '../../../services';
 import styles from './CartCard.module.css';
 
 export function CartCard({ cartItem }) {
@@ -8,6 +8,8 @@ export function CartCard({ cartItem }) {
   const { dataDispatch, wishlist } = useData();
   const isInWishlist = wishlist.find((wishlistItem) => wishlistItem._id === id);
   const navigate = useNavigate();
+
+  const { token } = useAuth();
 
   return (
     <div className={`card card-horizontal ${styles.card}`} style={{ maxWidth: '600px' }}>
@@ -38,7 +40,7 @@ export function CartCard({ cartItem }) {
               {quantity}
             </select>
           </div>
-          <button className="btn btn-primary-text" onClick={() => removeFromCart(id, dataDispatch, cartItem)}>
+          <button className="btn btn-primary-text" onClick={() => (token ? removeFromCart(id, dataDispatch, cartItem) : removeFromLocalStorage(dataDispatch, cartItem))}>
             Remove
           </button>
           <button className="btn btn-primary-text" style={{ textAlign: 'left' }} onClick={() => toggleFavourite(id, isInWishlist, dataDispatch, cartItem)}>
