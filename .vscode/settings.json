@@ -1,0 +1,13 @@
+{
+    "emmet.optimizeStylesheetParsing": false,
+    "emmet.excludeLanguages": [
+
+        "markdown"
+    ],
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "emmet.preferences": {
+    
+    }
+}

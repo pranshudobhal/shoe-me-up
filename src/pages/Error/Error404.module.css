@@ -1,0 +1,38 @@
+.errorContainer {
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  text-align: center;
+}
+
+.error h1 {
+  font-size: 8rem;
+}
+
+.error h2 {
+  font-size: 2rem;
+}
+
+.error p {
+  margin-top: 1.25rem;
+  font-size: 1rem;
+  color: var(--gray);
+}
+
+.error button {
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .error h1 {
+    font-size: 10rem;
+  }
+
+  .error h2 {
+    font-size: 3rem;
+  }
+
+  .error p {
+    margin-top: 1.5rem;
+  }
+}

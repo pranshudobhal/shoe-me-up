@@ -1,0 +1,39 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+:root {
+  --primary-color: #111111;
+  --secondary-color: #ff3f6c;
+  --white: #fff;
+  --gray: #6b7280;
+  --border-color: #d7d7d7;
+  --card-border: rgb(229, 229, 229);
+  --discount-green: #03a685;
+  --scrollbar-thumb: #9b9b9b;
+  --scrollbar-thumb-hover: #7c7a7a;
+}
+
+::selection {
+  color: var(--white);
+  background-color: var(--primary-color);
+}
+
+body {
+  color: var(--primary-color);
+  min-height: auto;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--primary-color);
+}

@@ -1,0 +1,88 @@
+.wishlistContainer {
+  padding: 5rem 0 2rem;
+}
+
+.wishlistItemsContainer {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.emptyWishlist {
+  height: 60vh;
+  width: 80vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.emptyWishlist h3 {
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.emptyWishlist p {
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+
+.emptyWishlist button {
+  margin-top: 2rem;
+}
+
+.pageTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageName {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.wishlistOverall span {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.wishlistOverall span:first-child {
+  color: var(--gray);
+}
+
+@media screen and (min-width: 1024px) {
+  .wishlistContainer {
+    padding: 7rem 0 2rem;
+  }
+
+  .container {
+    width: 90vw;
+    margin: 0 auto;
+  }
+
+  .wishlistItemsContainer {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2rem;
+    row-gap: 2rem;
+    width: 100%;
+  }
+
+  .pageTitle {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+    padding: 0 1rem;
+  }
+
+  .pageName {
+    margin-right: 0.75rem;
+  }
+
+  .wishlistOverall span {
+    font-size: 1.15rem;
+  }
+}
