@@ -1,0 +1,142 @@
+.container {
+  position: fixed;
+  bottom: 0;
+  height: 8vh;
+  background-color: var(--white);
+  width: 100vw;
+  display: flex;
+  box-shadow: 0 0 2px 0 rgb(148 150 159 / 30%);
+  align-items: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  z-index: 999;
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    display: none;
+  }
+}
+
+.sort {
+  width: 50%;
+  height: 100%;
+  border-right: 1px solid var(--border-color);
+  display: grid;
+  place-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.modal {
+  position: absolute;
+  bottom: 0;
+  background-color: var(--white);
+  width: 100vw;
+  text-transform: none;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #d7d7d7;
+}
+
+.sortModal {
+  height: 30vh;
+}
+
+.modal h3 {
+  font-weight: 500;
+  font-size: 1.75rem;
+  margin: 1rem 0 2rem 0;
+}
+
+.modal ul {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(229, 229, 229);
+}
+
+.modal ul:last-child {
+  border-bottom: none;
+}
+
+.sortModal ul {
+  border-bottom: none;
+}
+
+.modal li {
+  list-style-type: none;
+  margin: 1rem 0;
+}
+
+.modal label {
+  font-weight: 500;
+  padding-left: 0.25rem;
+  cursor: pointer;
+}
+
+.modal input {
+  cursor: pointer;
+}
+
+.closeButton {
+  cursor: pointer;
+}
+
+.modal span {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.modal span svg {
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+}
+
+.modal h3 ~ h4 {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.modal h4 {
+  margin-top: 2rem;
+}
+
+.filter {
+  width: 50%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.filterModal {
+  height: 70vh;
+}
+
+.priceSlider li:first-child {
+  font-weight: 400;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.priceSlider li:last-child {
+  font-weight: 400;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.modalCloseContainer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
